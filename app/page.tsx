@@ -1,221 +1,202 @@
-import {
-  ArrowDown,
-  ArrowDownRight,
-  ArrowRight,
-  ArrowUpRight,
-  Braces,
-  Layers3,
-  Radio,
-  Sparkles,
-  Trophy,
-  Users,
-  Zap,
-} from 'lucide-react';
+import { ClubIcon, type ClubIconName } from '@/components/club-icon';
+import { MobileJoinDock, OnboardingForm } from '@/components/join-experience';
 
-const tracks = [
+type ClubEvent = {
+  step: string;
+  label: string;
+  title: string;
+  copy: string;
+  tags: string[];
+  signal: string;
+  next: string;
+  tone: string;
+  icon: ClubIconName;
+};
+
+const events: ClubEvent[] = [
+  {
+    step: '01',
+    label: 'Hands-on workshop',
+    title: 'Learn the moves.',
+    copy: 'Start with the tools that matter: code, Git, APIs, UI, AI workflows, and the habit of turning “how?” into “done.”',
+    tags: ['Live code', 'Zero jargon', 'Build along'],
+    signal: 'Skill unlocked',
+    next: 'Build sprint',
+    tone: 'lime',
+    icon: 'brain-circuit',
+  },
+  {
+    step: '02',
+    label: 'Team build sprint',
+    title: 'Make it real.',
+    copy: 'Pick a problem, find your people, and ship a rough first version. You learn faster when the idea has to work outside your head.',
+    tags: ['Small teams', 'Real prototype', 'Demo ready'],
+    signal: 'Project shipped',
+    next: 'Game night',
+    tone: 'paper',
+    icon: 'code',
+  },
+  {
+    step: '03',
+    label: 'Club game night',
+    title: 'Play under pressure.',
+    copy: 'Speed-code, solve ridiculous constraints, and take on games hosted by clubs, committees, and colleges—with the clock very much alive.',
+    tags: ['Team quests', 'Logic chaos', 'Fast feedback'],
+    signal: 'Instincts sharpened',
+    next: 'Hackathon day',
+    tone: 'coral',
+    icon: 'gamepad',
+  },
+  {
+    step: '04',
+    label: 'The hackathon',
+    title: 'Build to win.',
+    copy: 'Walk in with a crew, a playbook, and the confidence to pitch. The trophy is the headline; becoming dangerous together is the real result.',
+    tags: ['Strategy', 'Storytelling', 'Submission'],
+    signal: 'Arena ready',
+    next: 'Join the club',
+    tone: 'night',
+    icon: 'trophy',
+  },
+];
+
+const takeaways: Array<{
+  number: string;
+  title: string;
+  copy: string;
+  icon: ClubIconName;
+}> = [
   {
     number: '01',
-    tag: 'Learn',
-    title: 'Decode the craft',
-    copy: 'Zero spectator mode. Learn Git, APIs, UI systems, AI workflows, and the engineering habits that make ideas shippable.',
-    icon: Braces,
-    className: 'track-card track-card-light',
-    footer: 'Clear concepts · Beginner friendly',
+    title: 'Skills that stick',
+    copy: 'Because you used them before the workshop ended.',
+    icon: 'zap',
   },
   {
     number: '02',
-    tag: 'Build',
-    title: 'Get your hands dirty',
-    copy: 'Pair up, break things, debug loudly, and leave every hands-on workshop with something real running on your screen.',
-    icon: Layers3,
-    className: 'track-card track-card-signal',
-    footer: 'Team sprints · Real prototypes',
+    title: 'A crew that ships',
+    copy: 'Builders, designers, and presenters you can call again.',
+    icon: 'users',
   },
   {
     number: '03',
-    tag: 'Compete',
-    title: 'Enter the arena',
-    copy: 'Games, speed-builds, committee challenges, college events, and hackathons that teach you to think when the clock bites.',
-    icon: Trophy,
-    className: 'track-card track-card-dark',
-    footer: 'Club games · Hackathon prep',
+    title: 'A hackathon playbook',
+    copy: 'From choosing the idea to surviving the final demo.',
+    icon: 'trophy',
   },
-];
-
-const workshopLoop = [
-  {
-    week: 'Stage 01',
-    title: 'Tool up',
-    detail: 'Git · APIs · product thinking',
-  },
-  {
-    week: 'Stage 02',
-    title: 'Build fast',
-    detail: 'UI systems · AI workflows · demos',
-  },
-  {
-    week: 'Stage 03',
-    title: 'Game night',
-    detail: 'Logic chaos · team quests · speed code',
-  },
-  {
-    week: 'Stage 04',
-    title: 'Ship & pitch',
-    detail: 'Polish · storytelling · battle test',
-  },
-];
-
-const outcomes = [
-  ['Build proof, not playlists', 'Turn tutorials into a working product people can click.'],
-  ['Find your unfair team', 'Meet designers, developers, and chaos-proof presenters.'],
-  ['Pitch under pressure', 'Explain the problem, the build, and why your idea deserves the room.'],
-  ['Walk into hackathons ready', 'A repeatable playbook beats last-minute panic every time.'],
 ];
 
 export default function Home() {
   return (
     <main>
       <section className="hero" id="top">
+        <div className="hero-photo" aria-hidden="true" />
+        <div className="hero-grid" aria-hidden="true" />
+
         <nav className="nav shell" aria-label="Primary navigation">
           <a className="brand" href="#top" aria-label="Hackathon Club home">
             <span className="brand-mark">H/C</span>
-            <span>Hackathon Club</span>
+            <span className="brand-name">Hackathon Club</span>
           </a>
 
-          <div className="nav-links">
-            <a href="#workshops">Workshops</a>
-            <a href="#arena">The arena</a>
-            <a href="#wins">Why join</a>
-          </div>
+          <span className="nav-mantra">Learn · Build · Compete</span>
 
-          <a className="nav-cta" href="#join">
-            Join now <ArrowUpRight size={15} strokeWidth={1.8} />
+          <a className="nav-join" href="#join-gate">
+            Join now <ClubIcon name="arrow-up-right" size={17} strokeWidth={1.9} />
           </a>
         </nav>
 
-        <div className="hero-art" aria-hidden="true" />
-        <div className="hero-grid" aria-hidden="true" />
-        <div className="hero-glow" aria-hidden="true">
-          <span className="orbit orbit-one" />
-          <span className="orbit orbit-two" />
-          <span className="core">01</span>
-        </div>
-
         <div className="hero-content shell">
-          <div className="eyebrow reveal-one">
-            <span className="status-dot" />
-            Built for curious coders · season zero
+          <div className="hero-kicker hero-reveal hero-reveal-1">
+            <span className="live-dot" />
+            Hackathon Club · Build season
           </div>
 
-          <h1 className="reveal-two">
-            Stop watching.
+          <h1 className="hero-reveal hero-reveal-2">
+            Learn it.
             <br />
-            <span>Start shipping.</span>
+            Build it.
+            <br />
+            <em>Win with it.</em>
           </h1>
 
-          <p className="hero-copy reveal-three">
-            Master the code. Enter the arena. Win the room. A club for curious
-            builders who want to turn late-night ideas into working products.
+          <p className="hero-copy hero-reveal hero-reveal-3">
+            Hands-on workshops, team games, and the kind of practice that makes
+            hackathon day feel familiar.
           </p>
 
-          <div className="hero-actions reveal-four">
-            <a className="primary-button" href="#join">
-              Join the club <ArrowUpRight size={18} strokeWidth={2} />
+          <div className="hero-actions hero-reveal hero-reveal-4">
+            <a className="primary-cta" href="#join-gate">
+              Join the club <ClubIcon name="arrow-right" size={19} strokeWidth={2} />
             </a>
-            <a className="text-link" href="#workshops">
-              Explore the journey <ArrowDownRight size={17} strokeWidth={1.8} />
+            <a className="story-link" href="#story">
+              See the experience <ClubIcon name="arrow-down" size={17} strokeWidth={1.7} />
             </a>
           </div>
         </div>
 
-        <div className="hero-footer shell hero-footer-reveal">
-          <p>Learn the stack</p>
-          <p>Build with a crew</p>
-          <p>Compete to win</p>
-          <span className="scroll-note">Scroll to enter ↓</span>
+        <div className="hero-proof shell hero-reveal hero-reveal-5">
+          <span>Workshop</span>
+          <ClubIcon name="arrow-right" size={13} />
+          <span>Build sprint</span>
+          <ClubIcon name="arrow-right" size={13} />
+          <span>Game night</span>
+          <ClubIcon name="arrow-right" size={13} />
+          <span>Hackathon</span>
         </div>
       </section>
 
-      <section className="manifesto" id="why">
-        <div className="shell section-rule section-kicker">
-          <span>Why this club exists</span>
-          <span>01 — 04</span>
+      <section className="story-section" id="story">
+        <div className="story-progress" aria-hidden="true">
+          <span />
         </div>
 
-        <div className="shell manifesto-grid">
+        <header className="story-header shell">
+          <div className="section-index">01 / The experience</div>
           <h2>
-            You don&apos;t need to be a genius.
+            Four events.
             <br />
-            <em>You need reps.</em>
+            One <em>builder arc.</em>
           </h2>
-
-          <div className="manifesto-copy">
-            <p>
-              Coding gets real when the timer starts, the demo breaks, and your
-              team looks at you. We make that moment familiar—before the big day.
-            </p>
-            <p>
-              Learn in short bursts. Build with your hands. Play weird games.
-              Then take that energy to hackathons across clubs, committees, and
-              colleges.
-            </p>
-          </div>
-        </div>
-
-        <div className="shell terminal-window" aria-label="Club build terminal">
-          <div className="terminal-bar">
-            <div className="terminal-dots" aria-hidden="true">
-              <span />
-              <span />
-              <span />
-            </div>
-            <span>club_protocol.sh</span>
-            <span>LIVE</span>
-          </div>
-          <div className="terminal-body">
-            <div className="terminal-prompt">
-              <span>01</span>
-              <code>$ join hackathon-club --mode=builder</code>
-            </div>
-            <div className="terminal-output">
-              <span>✓ curiosity detected</span>
-              <span>✓ team matched</span>
-              <span>✓ fear of failing removed</span>
-              <strong>READY TO BUILD_</strong>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="tracks-section" id="workshops">
-        <div className="shell tracks-heading">
-          <div>
-            <span className="micro-label">The club loop</span>
-            <h2>Three moves. On repeat.</h2>
-          </div>
           <p>
-            Workshops give you the tools. Games sharpen the instincts. Hackathons
-            make it count.
+            Don&apos;t just join a club. Move through a story that changes how you
+            think, build, and compete.
           </p>
-        </div>
+        </header>
 
-        <div className="shell track-grid">
-          {tracks.map((track) => {
-            const Icon = track.icon;
+        <div className="story-list shell">
+          {events.map((event) => {
             return (
-              <article className={track.className} key={track.number}>
-                <div className="track-topline">
-                  <span>{track.number}</span>
-                  <Icon size={21} strokeWidth={1.5} aria-hidden="true" />
+              <article className={`story-chapter story-${event.tone}`} key={event.step}>
+                <div className="event-visual">
+                  <span className="event-coordinate">{event.step} / 04</span>
+                  <div className="event-orbit" aria-hidden="true">
+                    <span />
+                    <span />
+                  </div>
+                  <div className="event-icon" aria-hidden="true">
+                    <ClubIcon name={event.icon} size={42} strokeWidth={1.25} />
+                  </div>
+                  <div className="event-signal">
+                    <span className="signal-dot" />
+                    {event.signal}
+                  </div>
                 </div>
-                <div className="track-card-copy">
-                  <span className="track-tag">{track.tag}</span>
-                  <h3>{track.title}</h3>
-                  <p>{track.copy}</p>
-                </div>
-                <div className="track-footer">
-                  <span>{track.footer}</span>
-                  <ArrowUpRight size={18} strokeWidth={1.7} aria-hidden="true" />
+
+                <div className="event-copy">
+                  <span className="event-label">{event.label}</span>
+                  <h3>{event.title}</h3>
+                  <p>{event.copy}</p>
+                  <div className="event-tags">
+                    {event.tags.map((tag) => (
+                      <span key={tag}>{tag}</span>
+                    ))}
+                  </div>
+                  <div className="event-next">
+                    <span>Next</span>
+                    <strong>{event.next}</strong>
+                    <ClubIcon name="arrow-down" size={17} strokeWidth={1.7} />
+                  </div>
                 </div>
               </article>
             );
@@ -223,186 +204,76 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="arena-section" id="arena">
-        <div className="arena-orbit" aria-hidden="true" />
-        <div className="shell section-rule arena-rule">
-          <span>The arena</span>
-          <span>Pressure makes builders</span>
-        </div>
-
-        <div className="shell arena-intro">
-          <div>
-            <span className="micro-label micro-label-lime">Simulated intensity</span>
-            <h2>
-              Train like it&apos;s
-              <br />
-              <span>submission night.</span>
-            </h2>
-          </div>
-          <p>
-            Timed builds. Surprise constraints. Demo disasters. Tiny games with
-            very real lessons—so your first hackathon never feels like your first.
-          </p>
-        </div>
-
-        <div className="shell arena-board">
-          <div className="board-toolbar">
-            <div>
-              <Radio size={15} strokeWidth={1.8} />
-              <span>Sample challenge</span>
-            </div>
-            <span>HC / ARENA_04</span>
-          </div>
-
-          <div className="board-main">
-            <div className="challenge-copy">
-              <span className="challenge-number">CHALLENGE 04</span>
-              <h3>Make boring data impossible to ignore.</h3>
-              <p>
-                Pick one campus problem. Build the smallest useful product. Demo
-                it before the countdown hits zero.
-              </p>
-              <div className="constraint-row">
-                <span>3 builders</span>
-                <span>1 public API</span>
-                <span>No slide deck</span>
-              </div>
-            </div>
-
-            <div className="countdown" aria-label="Sample 48 hour challenge timer">
-              <span>Sample sprint clock</span>
-              <strong>48:00:00</strong>
-              <div className="timer-track">
-                <span />
-              </div>
-              <div className="team-line">
-                <div className="avatar-stack" aria-label="Illustrative three-person squad">
-                  <span>AK</span>
-                  <span>NS</span>
-                  <span>RJ</span>
-                </div>
-                <span>Squad online</span>
-              </div>
-            </div>
-          </div>
-
-          <div className="board-ticker" aria-hidden="true">
-            <span>BUILD</span>
-            <Zap size={14} fill="currentColor" />
-            <span>BREAK</span>
-            <Zap size={14} fill="currentColor" />
-            <span>DEBUG</span>
-            <Zap size={14} fill="currentColor" />
-            <span>SHIP</span>
-          </div>
-        </div>
-      </section>
-
-      <section className="outcomes-section" id="wins">
-        <div className="shell section-rule dark-rule">
-          <span>What you actually win</span>
-          <span>Beyond the trophy</span>
-        </div>
-
-        <div className="shell outcomes-lead">
-          <div className="trophy-seal" aria-hidden="true">
-            <Trophy size={39} strokeWidth={1.15} />
-            <span>Built to win</span>
-          </div>
+      <section className="takeaways" id="wins">
+        <div className="shell takeaways-heading">
+          <div className="section-index">02 / What stays with you</div>
           <h2>
-            Winning starts
+            Leave with more
             <br />
-            <em>before the trophy.</em>
+            than a <em>screenshot.</em>
           </h2>
-          <p>
-            The real flex is becoming the person every serious team wants in the
-            room.
-          </p>
         </div>
 
-        <div className="shell outcomes-list">
-          {outcomes.map(([title, detail], index) => (
-            <article key={title}>
-              <span>0{index + 1}</span>
-              <h3>{title}</h3>
-              <p>{detail}</p>
-              <ArrowRight size={21} strokeWidth={1.5} aria-hidden="true" />
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="workshop-section">
-        <div className="shell workshop-layout">
-          <div className="workshop-sticky">
-            <span className="micro-label micro-label-lime">How we run</span>
-            <h2>A four-week loop with no filler.</h2>
-            <p>
-              Move through each stage with your crew. Leave every session with a
-              new skill, a stronger team, or a build worth showing.
-            </p>
-            <a href="#join">
-              Save your seat <ArrowDown size={17} strokeWidth={1.7} />
-            </a>
-          </div>
-
-          <div className="week-list">
-            {workshopLoop.map((item, index) => (
-              <article key={item.week}>
-                <div className="week-index">0{index + 1}</div>
-                <div>
-                  <span>{item.week}</span>
-                  <h3>{item.title}</h3>
-                  <p>{item.detail}</p>
+        <div className="takeaway-rail shell">
+          {takeaways.map((item) => {
+            return (
+              <article className="takeaway-card" key={item.number}>
+                <div className="takeaway-icon" aria-hidden="true">
+                  <ClubIcon name={item.icon} size={31} strokeWidth={1.3} />
                 </div>
-                <Sparkles size={19} strokeWidth={1.4} aria-hidden="true" />
+                <span>{item.number}</span>
+                <h3>{item.title}</h3>
+                <p>{item.copy}</p>
               </article>
-            ))}
+            );
+          })}
+        </div>
+
+        <p className="swipe-note shell">
+          Swipe to explore <ClubIcon name="arrow-right" size={15} strokeWidth={1.7} />
+        </p>
+      </section>
+
+      <section className="join-gate" id="join-gate">
+        <div className="join-gate-grid" aria-hidden="true" />
+        <div className="join-gate-content shell">
+          <div className="story-complete">
+            <ClubIcon name="sparkles" size={15} strokeWidth={1.6} /> Story complete · 04 / 04
           </div>
-        </div>
-      </section>
-
-      <section className="club-strip" aria-label="Club values">
-        <div className="club-strip-track">
-          <span>NO SPECTATORS</span>
-          <span>◆</span>
-          <span>BUILD IN PUBLIC</span>
-          <span>◆</span>
-          <span>TEAM OVER EGO</span>
-          <span>◆</span>
-          <span>SHIP THE DEMO</span>
-          <span>◆</span>
-        </div>
-      </section>
-
-      <section className="join-section" id="join">
-        <div className="join-grid" aria-hidden="true" />
-        <div className="shell join-topline">
-          <span>When you&apos;re ready to build</span>
-          <Users size={21} strokeWidth={1.4} />
-        </div>
-
-        <div className="shell join-layout">
           <h2>
-            Your first commit
+            Ready for your
             <br />
-            starts <em>here.</em>
+            first commit?
           </h2>
-          <div className="join-copy">
+          <a className="join-gate-button" href="#join">
+            Join now <ClubIcon name="arrow-down" size={26} strokeWidth={2} />
+          </a>
+        </div>
+      </section>
+
+      <section className="onboarding-section" id="join">
+        <div className="shell onboarding-layout">
+          <div className="onboarding-intro">
+            <div className="section-index section-index-light">03 / Onboarding</div>
+            <h2>
+              Tell us who&apos;s
+              <br />
+              <em>joining the crew.</em>
+            </h2>
             <p>
-              No perfect résumé. No “10x developer” energy. Just curiosity,
-              consistency, and a willingness to build with other people.
+              Add your basics now. When you send the official WhatsApp invite,
+              this flow will take new members straight into the group.
             </p>
-            <a
-              className="join-button"
-              href="mailto:?subject=I%20want%20to%20join%20Hackathon%20Club&body=Hey!%20I%20want%20to%20join%20Hackathon%20Club.%20I%E2%80%99m%20interested%20in%20the%20next%20hands-on%20workshop.%20Here%E2%80%99s%20a%20little%20about%20what%20I%20want%20to%20build%3A%20"
-            >
-              Pitch this to my coordinator <ArrowUpRight size={19} strokeWidth={2} />
-            </a>
-            <small>
-              Opens an editable interest note you can send to your campus contact.
-            </small>
+            <div className="join-path" aria-label="Two-step joining path">
+              <span className="join-path-active">1</span>
+              <i />
+              <span>2</span>
+              <p>Profile</p>
+              <p>WhatsApp</p>
+            </div>
           </div>
+
+          <OnboardingForm />
         </div>
       </section>
 
@@ -410,18 +281,16 @@ export default function Home() {
         <div className="shell footer-main">
           <a className="brand" href="#top" aria-label="Back to top">
             <span className="brand-mark">H/C</span>
-            <span>Hackathon Club</span>
+            <span className="brand-name">Hackathon Club</span>
           </a>
           <p>Learn hard. Build real. Win together.</p>
-          <a href="#top">
-            Back to top <ArrowUpRight size={14} />
+          <a href="#join">
+            Join the crew <ClubIcon name="message" size={15} strokeWidth={1.7} />
           </a>
         </div>
-        <div className="shell footer-meta">
-          <span>For the curious, not the finished.</span>
-          <span>© 2026 Hackathon Club</span>
-        </div>
       </footer>
+
+      <MobileJoinDock />
     </main>
   );
 }
