@@ -20,7 +20,7 @@ const tracks = [
     copy: 'Zero spectator mode. Learn Git, APIs, UI systems, AI workflows, and the engineering habits that make ideas shippable.',
     icon: Braces,
     className: 'track-card track-card-light',
-    footer: 'Mentor-led · Beginner friendly',
+    footer: 'Clear concepts · Beginner friendly',
   },
   {
     number: '02',
@@ -44,22 +44,22 @@ const tracks = [
 
 const workshopLoop = [
   {
-    week: 'Week 01',
+    week: 'Stage 01',
     title: 'Tool up',
     detail: 'Git · APIs · product thinking',
   },
   {
-    week: 'Week 02',
+    week: 'Stage 02',
     title: 'Build fast',
     detail: 'UI systems · AI workflows · demos',
   },
   {
-    week: 'Week 03',
+    week: 'Stage 03',
     title: 'Game night',
     detail: 'Logic chaos · team quests · speed code',
   },
   {
-    week: 'Week 04',
+    week: 'Stage 04',
     title: 'Ship & pitch',
     detail: 'Polish · storytelling · battle test',
   },
@@ -104,7 +104,7 @@ export default function Home() {
         <div className="hero-content shell">
           <div className="eyebrow reveal-one">
             <span className="status-dot" />
-            Enrollment open · season 01
+            Built for curious coders · season zero
           </div>
 
           <h1 className="reveal-two">
@@ -128,7 +128,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="hero-footer shell reveal-five">
+        <div className="hero-footer shell hero-footer-reveal">
           <p>Learn the stack</p>
           <p>Build with a crew</p>
           <p>Compete to win</p>
@@ -136,7 +136,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="manifesto" id="workshops">
+      <section className="manifesto" id="why">
         <div className="shell section-rule section-kicker">
           <span>Why this club exists</span>
           <span>01 — 04</span>
@@ -187,7 +187,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="tracks-section">
+      <section className="tracks-section" id="workshops">
         <div className="shell tracks-heading">
           <div>
             <span className="micro-label">The club loop</span>
@@ -249,7 +249,7 @@ export default function Home() {
           <div className="board-toolbar">
             <div>
               <Radio size={15} strokeWidth={1.8} />
-              <span>Live challenge</span>
+              <span>Sample challenge</span>
             </div>
             <span>HC / ARENA_04</span>
           </div>
@@ -263,24 +263,23 @@ export default function Home() {
                 it before the countdown hits zero.
               </p>
               <div className="constraint-row">
-                <span>3 people</span>
+                <span>3 builders</span>
                 <span>1 public API</span>
                 <span>No slide deck</span>
               </div>
             </div>
 
-            <div className="countdown" aria-label="Illustrative 48 hour challenge timer">
-              <span>Time remaining</span>
+            <div className="countdown" aria-label="Sample 48 hour challenge timer">
+              <span>Sample sprint clock</span>
               <strong>48:00:00</strong>
               <div className="timer-track">
                 <span />
               </div>
               <div className="team-line">
-                <div className="avatar-stack" aria-label="Team of four builders">
+                <div className="avatar-stack" aria-label="Illustrative three-person squad">
                   <span>AK</span>
                   <span>NS</span>
                   <span>RJ</span>
-                  <span>+</span>
                 </div>
                 <span>Squad online</span>
               </div>
@@ -339,8 +338,8 @@ export default function Home() {
             <span className="micro-label micro-label-lime">How we run</span>
             <h2>A four-week loop with no filler.</h2>
             <p>
-              Join anywhere in the cycle. Leave every session with a new skill,
-              a stronger team, or a build worth showing.
+              Move through each stage with your crew. Leave every session with a
+              new skill, a stronger team, or a build worth showing.
             </p>
             <a href="#join">
               Save your seat <ArrowDown size={17} strokeWidth={1.7} />
@@ -379,7 +378,7 @@ export default function Home() {
       <section className="join-section" id="join">
         <div className="join-grid" aria-hidden="true" />
         <div className="shell join-topline">
-          <span>Next cohort forming now</span>
+          <span>When you&apos;re ready to build</span>
           <Users size={21} strokeWidth={1.4} />
         </div>
 
@@ -398,10 +397,10 @@ export default function Home() {
               className="join-button"
               href="mailto:?subject=I%20want%20to%20join%20Hackathon%20Club&body=Hey!%20I%20want%20to%20join%20Hackathon%20Club.%20I%E2%80%99m%20interested%20in%20the%20next%20hands-on%20workshop.%20Here%E2%80%99s%20a%20little%20about%20what%20I%20want%20to%20build%3A%20"
             >
-              Draft my intro <ArrowUpRight size={19} strokeWidth={2} />
+              Pitch this to my coordinator <ArrowUpRight size={19} strokeWidth={2} />
             </a>
             <small>
-              Opens a ready-to-send email. Add your club coordinator and hit send.
+              Opens an editable interest note you can send to your campus contact.
             </small>
           </div>
         </div>

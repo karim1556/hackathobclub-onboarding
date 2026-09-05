@@ -369,7 +369,7 @@ h1 span {
   min-height: 82px;
   transform: translateX(-50%);
   border-top: 1px solid rgb(240 243 231 / 11%);
-  color: rgb(240 243 231 / 48%);
+  color: rgb(240 243 231 / 68%);
   font-family: var(--font-geist-mono);
   font-size: 10px;
   letter-spacing: 0.08em;
@@ -425,7 +425,7 @@ h1 span {
 }
 
 .section-kicker {
-  color: rgb(9 19 16 / 54%);
+  color: rgb(9 19 16 / 66%);
 }
 
 .manifesto-grid {
@@ -539,7 +539,7 @@ h1 span {
 }
 
 .terminal-prompt > span {
-  color: rgb(9 19 16 / 35%);
+  color: rgb(9 19 16 / 62%);
   font-family: var(--font-geist-mono);
   font-size: 11px;
 }
@@ -559,7 +559,7 @@ h1 span {
   gap: 18px;
   padding: 42px;
   background: #0a1513;
-  color: rgb(240 243 231 / 54%);
+  color: rgb(240 243 231 / 66%);
   font-family: var(--font-geist-mono);
   font-size: 11px;
   letter-spacing: 0.04em;
@@ -589,7 +589,7 @@ h1 span {
 .micro-label {
   display: block;
   margin-bottom: 24px;
-  color: rgb(9 19 16 / 54%);
+  color: rgb(9 19 16 / 66%);
   font-family: var(--font-geist-mono);
   font-size: 10px;
   letter-spacing: 0.13em;
@@ -727,7 +727,7 @@ h1 span {
 .track-footer {
   padding-top: 20px;
   border-top: 1px solid currentColor;
-  color: rgb(9 19 16 / 54%);
+  color: rgb(9 19 16 / 66%);
 }
 
 .arena-section {
@@ -762,7 +762,7 @@ h1 span {
 .arena-orbit::after { inset: 32%; }
 
 .arena-rule {
-  color: rgb(240 243 231 / 45%);
+  color: rgb(240 243 231 / 68%);
   border-color: rgb(240 243 231 / 12%);
 }
 
@@ -817,7 +817,7 @@ h1 span {
   justify-content: space-between;
   padding-inline: 24px;
   border-bottom: 1px solid rgb(240 243 231 / 14%);
-  color: rgb(240 243 231 / 47%);
+  color: rgb(240 243 231 / 68%);
   font-family: var(--font-geist-mono);
   font-size: 9px;
   letter-spacing: 0.11em;
@@ -903,7 +903,7 @@ h1 span {
 }
 
 .countdown > span {
-  color: rgb(240 243 231 / 44%);
+  color: rgb(240 243 231 / 68%);
   font-family: var(--font-geist-mono);
   font-size: 9px;
   letter-spacing: 0.12em;
@@ -938,7 +938,7 @@ h1 span {
   align-items: center;
   justify-content: space-between;
   margin-top: 55px;
-  color: rgb(240 243 231 / 43%);
+  color: rgb(240 243 231 / 68%);
   font-family: var(--font-geist-mono);
   font-size: 9px;
   letter-spacing: 0.08em;
@@ -989,7 +989,7 @@ h1 span {
 }
 
 .dark-rule {
-  color: rgb(9 19 16 / 52%);
+  color: rgb(9 19 16 / 66%);
 }
 
 .outcomes-lead {
@@ -1051,7 +1051,7 @@ h1 span {
 }
 
 .outcomes-list article > span {
-  color: rgb(9 19 16 / 40%);
+  color: rgb(9 19 16 / 66%);
   font-family: var(--font-geist-mono);
   font-size: 10px;
 }
@@ -1141,7 +1141,7 @@ h1 span {
 }
 
 .week-list article span {
-  color: rgb(240 243 231 / 40%);
+  color: rgb(240 243 231 / 68%);
   font-family: var(--font-geist-mono);
   font-size: 9px;
   letter-spacing: 0.1em;
@@ -1157,7 +1157,7 @@ h1 span {
 
 .week-list article p {
   margin: 0;
-  color: rgb(240 243 231 / 47%);
+  color: rgb(240 243 231 / 64%);
   font-size: 12px;
 }
 
@@ -1310,7 +1310,7 @@ h1 span {
   margin-top: 60px;
   padding-top: 22px;
   border-top: 1px solid rgb(240 243 231 / 12%);
-  color: rgb(240 243 231 / 32%);
+  color: rgb(240 243 231 / 64%);
   font-family: var(--font-geist-mono);
   font-size: 8px;
   letter-spacing: 0.1em;
@@ -1320,8 +1320,7 @@ h1 span {
 .reveal-one,
 .reveal-two,
 .reveal-three,
-.reveal-four,
-.reveal-five {
+.reveal-four {
   opacity: 0;
   animation: rise 750ms cubic-bezier(0.2, 0.75, 0.2, 1) forwards;
 }
@@ -1330,11 +1329,20 @@ h1 span {
 .reveal-two { animation-delay: 160ms; }
 .reveal-three { animation-delay: 260ms; }
 .reveal-four { animation-delay: 350ms; }
-.reveal-five { animation-delay: 480ms; }
+
+.hero-footer-reveal {
+  opacity: 0;
+  animation: footer-rise 750ms 480ms cubic-bezier(0.2, 0.75, 0.2, 1) forwards;
+}
 
 @keyframes rise {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes footer-rise {
+  from { opacity: 0; transform: translate(-50%, 20px); }
+  to { opacity: 1; transform: translate(-50%, 0); }
 }
 
 @keyframes spin {
@@ -1413,7 +1421,7 @@ h1 span {
     justify-content: center;
     padding-bottom: 150px;
   }
-  h1 { font-size: clamp(54px, 17vw, 82px); line-height: 0.87; }
+  h1 { font-size: clamp(43px, 12.3vw, 82px); line-height: 0.87; }
   .hero-copy { max-width: 87%; margin-top: 28px; font-size: 15px; }
   .hero-actions { align-items: flex-start; flex-direction: column; gap: 10px; margin-top: 28px; }
   .primary-button { min-height: 52px; }
