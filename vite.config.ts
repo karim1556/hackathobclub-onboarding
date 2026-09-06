@@ -8,9 +8,12 @@ const SITE_CREATOR_PLACEHOLDER_DATABASE_ID =
   '00000000-0000-4000-8000-000000000000';
 
 const { d1, r2 } = hostingConfig;
+const isWorkersBuild = process.env.WORKERS_CI === '1' || process.env.WORKERS_CI === 'true';
 const d1DatabaseId =
-  process.env.CLOUDFLARE_D1_DATABASE_ID ?? SITE_CREATOR_PLACEHOLDER_DATABASE_ID;
-const d1DatabaseName = process.env.CLOUDFLARE_D1_DATABASE_NAME ?? 'site-creator-d1';
+  process.env.CLOUDFLARE_D1_DATABASE_ID ??
+  (isWorkersBuild ? '562e49b2-d7e1-4f89-881f-bc466b737406' : SITE_CREATOR_PLACEHOLDER_DATABASE_ID);
+const d1DatabaseName =
+  process.env.CLOUDFLARE_D1_DATABASE_NAME ?? (isWorkersBuild ? 'hackathon-club-db' : 'site-creator-d1');
 
 // macOS Seatbelt blocks FSEvents, so Codex previews need polling for HMR.
 const isCodexSeatbeltSandbox = process.env.CODEX_SANDBOX === 'seatbelt';
