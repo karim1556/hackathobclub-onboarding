@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://hc-build-win.mossy-rat-0653.chatgpt.site'),
+  metadataBase: new URL('https://hc-build-win.cream911.chatgpt.site'),
   title: 'Hackathon Club — Learn. Build. Win.',
   description:
     'Master coding, build real projects, join hands-on workshops, and compete to win with Hackathon Club.',

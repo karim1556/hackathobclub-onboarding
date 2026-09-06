@@ -1,6 +1,6 @@
 'use client';
 
-import { type SyntheticEvent, useEffect, useState } from 'react';
+import { type SyntheticEvent, useState } from 'react';
 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -17,15 +17,6 @@ function CheckIcon() {
   return (
     <svg aria-hidden="true" width="28" height="28" viewBox="0 0 28 28" fill="none">
       <path d="m6 14.5 5 5L22 8.5" stroke="currentColor" strokeWidth="2.2" />
-    </svg>
-  );
-}
-
-function LockIcon() {
-  return (
-    <svg aria-hidden="true" width="18" height="18" viewBox="0 0 18 18" fill="none">
-      <rect x="3.5" y="7.5" width="11" height="8" rx="1" stroke="currentColor" strokeWidth="1.4" />
-      <path d="M6 7.5V5a3 3 0 0 1 6 0v2.5" stroke="currentColor" strokeWidth="1.4" />
     </svg>
   );
 }
@@ -47,8 +38,7 @@ function SparkleIcon() {
   );
 }
 
-// Add the official group invite here when it is available.
-const WHATSAPP_GROUP_URL = '';
+const WHATSAPP_GROUP_URL = 'https://chat.whatsapp.com/FO8vqJtFceI2nDTQbEuzwV';
 
 type MemberProfile = {
   name: string;
@@ -90,32 +80,23 @@ export function OnboardingForm() {
         <div className="success-mark" aria-hidden="true">
           <CheckIcon />
         </div>
-        <span className="form-step-label">Details saved locally</span>
-        <h3>WhatsApp is the final step.</h3>
+        <span className="form-step-label">Details ready</span>
+        <h3>Your crew is one tap away.</h3>
         <p>
-          Nice one, {profile.name.split(' ')[0]}. Nothing has been sent or
-          registered yet. Once the official invite is connected, the button
-          below becomes your way into the group.
+          Nice one, {profile.name.split(' ')[0]}. This form stays on your
+          device; the official WhatsApp invite is how you enter the crew.
         </p>
 
-        {WHATSAPP_GROUP_URL ? (
-          <a
-            className="whatsapp-button"
-            href={WHATSAPP_GROUP_URL}
-            target="_blank"
-            rel="noreferrer"
-          >
-            <MessageIcon />
-            Join the WhatsApp group
-            <ArrowRightIcon />
-          </a>
-        ) : (
-          <button className="whatsapp-button whatsapp-button-locked" type="button" disabled>
-            <MessageIcon />
-            WhatsApp invite not connected yet
-            <LockIcon />
-          </button>
-        )}
+        <a
+          className="whatsapp-button"
+          href={WHATSAPP_GROUP_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <MessageIcon />
+          Join the WhatsApp group
+          <ArrowRightIcon />
+        </a>
 
         <button className="edit-profile-button" type="button" onClick={() => setIsComplete(false)}>
           Edit my details
@@ -187,78 +168,14 @@ export function OnboardingForm() {
       </div>
 
       <Button className="onboarding-submit" type="submit">
-        Save details on this device
+        Unlock the WhatsApp invite
         <ArrowRightIcon />
       </Button>
 
       <p className="form-privacy">
-        This demo does not send or register your details. They stay in this
-        browser until the club connects its WhatsApp invite.
+        Your details stay in this browser. The next step opens the official
+        Hackathon Club WhatsApp group.
       </p>
     </form>
-  );
-}
-
-export function MobileJoinDock() {
-  const [isHeroVisible, setIsHeroVisible] = useState(true);
-  const [isNearEnd, setIsNearEnd] = useState(false);
-
-  useEffect(() => {
-    const hero = document.getElementById('top');
-    const endSections = [
-      document.querySelector('.join-gate-button'),
-      document.getElementById('join'),
-      document.querySelector('footer'),
-    ].filter((section): section is HTMLElement => Boolean(section));
-
-    const visibility = new Map<Element, boolean>();
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => visibility.set(entry.target, entry.isIntersecting));
-        setIsNearEnd([...visibility.values()].some(Boolean));
-      },
-      { threshold: 0.01 },
-    );
-
-    endSections.forEach((section) => observer.observe(section));
-
-    const heroObserver = hero
-      ? new IntersectionObserver(
-          ([entry]) => setIsHeroVisible(entry.isIntersecting),
-          { threshold: 0.08 },
-        )
-      : null;
-
-    if (hero) heroObserver?.observe(hero);
-
-    return () => {
-      observer.disconnect();
-      heroObserver?.disconnect();
-    };
-  }, []);
-
-  function handleJoinClick() {
-    document.getElementById('join-gate')?.scrollIntoView({ behavior: 'smooth' });
-  }
-
-  const isDockHidden = isHeroVisible || isNearEnd;
-
-  return (
-    <div
-      aria-hidden={isDockHidden}
-      className={`mobile-join-dock${isDockHidden ? ' is-hidden' : ''}`}
-      inert={isDockHidden}
-    >
-      <Button
-        className="mobile-join-button"
-        type="button"
-        tabIndex={isDockHidden ? -1 : 0}
-        onClick={handleJoinClick}
-      >
-        <span>Join now</span>
-        <ArrowRightIcon />
-      </Button>
-    </div>
   );
 }
