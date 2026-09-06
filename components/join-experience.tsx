@@ -140,7 +140,7 @@ export function OnboardingForm() {
             type="text"
             value={profile.name}
             onChange={(event) => updateField('name', event.target.value)}
-            placeholder="Ada Lovelace"
+            placeholder="Karim Shaikh"
             autoComplete="name"
             minLength={2}
             maxLength={80}
@@ -157,7 +157,7 @@ export function OnboardingForm() {
             type="email"
             value={profile.email}
             onChange={(event) => updateField('email', event.target.value)}
-            placeholder="you@college.edu"
+            placeholder="karimshaikh1556@gmail.com"
             autoComplete="email"
             maxLength={120}
             required
@@ -173,7 +173,7 @@ export function OnboardingForm() {
             type="tel"
             value={profile.phone}
             onChange={(event) => updateField('phone', event.target.value)}
-            placeholder="+91 98765 43210"
+            placeholder="9004667948"
             autoComplete="tel"
             inputMode="tel"
             minLength={7}
