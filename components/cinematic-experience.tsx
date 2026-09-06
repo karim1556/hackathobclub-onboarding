@@ -1,6 +1,15 @@
 'use client';
 
-import { type CSSProperties, useEffect, useMemo, useState } from 'react';
+import {
+  type CSSProperties,
+  type PointerEvent as ReactPointerEvent,
+  type WheelEvent as ReactWheelEvent,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 
 import { ClubIcon, type ClubIconName } from '@/components/club-icon';
 import { OnboardingForm } from '@/components/join-experience';
@@ -11,45 +20,40 @@ type Chapter = {
   title: string;
   copy: string;
   tags: string[];
-  signal: string;
   tone: 'lime' | 'paper' | 'coral' | 'night';
   icon: ClubIconName;
 };
 
 const chapters: Chapter[] = [
   {
-    label: 'Hands-on workshop',
-    title: 'Learn the moves.',
-    copy: 'Code, Git, APIs, UI and AI workflows—made practical before the session ends.',
-    tags: ['Live code', 'Build along', 'Zero jargon'],
-    signal: 'Skill unlocked',
+    label: 'Workshops',
+    title: 'Code it live.',
+    copy: 'Build with code, Git, APIs, interfaces and AI tools—hands-on, in the room.',
+    tags: ['Live code', 'Guided builds', 'Real tools'],
     tone: 'lime',
     icon: 'brain-circuit',
   },
   {
-    label: 'Team build sprint',
-    title: 'Make it real.',
-    copy: 'Find your people, choose a problem, and ship the rough first version together.',
-    tags: ['Small teams', 'Prototype', 'Demo ready'],
-    signal: 'Project shipped',
+    label: 'Team sprints',
+    title: 'Ship as a team.',
+    copy: 'Find developers, designers and storytellers. Turn one idea into a working demo.',
+    tags: ['Squads', 'Prototype', 'Demo'],
     tone: 'paper',
     icon: 'code',
   },
   {
-    label: 'Club game night',
+    label: 'Game nights',
     title: 'Play under pressure.',
-    copy: 'Speed-code, solve wild constraints, and take on games hosted by clubs and colleges.',
-    tags: ['Team quests', 'Logic chaos', 'Fast feedback'],
-    signal: 'Instincts sharpened',
+    copy: 'Take on speed-coding, logic rounds and college challenges with the room behind you.',
+    tags: ['Team quests', 'Logic', 'Fast rounds'],
     tone: 'coral',
     icon: 'gamepad',
   },
   {
-    label: 'The hackathon',
-    title: 'Build to win.',
-    copy: 'Walk in with a crew, a playbook, and a story worth pitching when the clock starts.',
-    tags: ['Strategy', 'Storytelling', 'Submission'],
-    signal: 'Arena ready',
+    label: 'Hackathons',
+    title: 'Pitch to win.',
+    copy: 'Enter with a tested process: choose sharply, build fast, and tell a story judges remember.',
+    tags: ['Strategy', 'Build', 'Pitch'],
     tone: 'night',
     icon: 'trophy',
   },
@@ -76,6 +80,25 @@ const outcomes: Array<{ title: string; copy: string; icon: ClubIconName }> = [
 const stageDurations = [5800, 5100, 5100, 5100, 5100, 5000] as const;
 const finalCtaStage = 6;
 const formStage = 7;
+const stageHashes = [
+  '#top',
+  '#workshops',
+  '#team-sprints',
+  '#game-nights',
+  '#hackathons',
+  '#takeaways',
+  '#join-gate',
+  '#join',
+] as const;
+
+function getStageFromHash(hash: string) {
+  const index = stageHashes.indexOf(hash as (typeof stageHashes)[number]);
+  return index < 0 ? 0 : index;
+}
+
+function isInteractiveTarget(target: EventTarget | null) {
+  return target instanceof HTMLElement && Boolean(target.closest('button, a, input, textarea, select, form'));
+}
 
 function stageClass(index: number, activeIndex: number) {
   if (index === activeIndex) return 'is-active';
@@ -88,22 +111,39 @@ export function CinematicExperience() {
   const [isPageVisible, setIsPageVisible] = useState(
     () => typeof document === 'undefined' || !document.hidden,
   );
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const gestureStart = useRef<{ x: number; y: number } | null>(null);
+  const wheelLockedUntil = useRef(0);
 
   const activeChapter = useMemo(() => chapters[activeIndex - 1], [activeIndex]);
-  const isStoryPlaying = activeIndex < finalCtaStage && !isPaused;
+  const isStoryPlaying = activeIndex < finalCtaStage && !isPaused && !prefersReducedMotion;
+
+  const goToStage = useCallback(
+    (index: number, pause = true, historyMode: 'push' | 'replace' = 'push') => {
+      const target = Math.max(0, Math.min(index, formStage));
+      setActiveIndex(target);
+      setIsPaused(pause);
+
+      const method = historyMode === 'push' ? 'pushState' : 'replaceState';
+      window.history[method](null, '', stageHashes[target]);
+    },
+    [],
+  );
 
   useEffect(() => {
-    const frame = window.requestAnimationFrame(() => {
-      if (window.location.hash === '#join') {
-        setActiveIndex(formStage);
-        setIsPaused(true);
-      } else if (window.location.hash === '#join-gate') {
-        setActiveIndex(finalCtaStage);
-        setIsPaused(true);
-      }
-    });
+    function syncFromHistory() {
+      const target = getStageFromHash(window.location.hash);
+      setActiveIndex(target);
+      setIsPaused(target !== 0);
+    }
 
-    return () => window.cancelAnimationFrame(frame);
+    const frame = window.requestAnimationFrame(syncFromHistory);
+    window.addEventListener('popstate', syncFromHistory);
+
+    return () => {
+      window.cancelAnimationFrame(frame);
+      window.removeEventListener('popstate', syncFromHistory);
+    };
   }, []);
 
   useEffect(() => {
@@ -116,42 +156,109 @@ export function CinematicExperience() {
   }, []);
 
   useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const syncMotionPreference = () => setPrefersReducedMotion(mediaQuery.matches);
+
+    const frame = window.requestAnimationFrame(syncMotionPreference);
+    mediaQuery.addEventListener('change', syncMotionPreference);
+    return () => {
+      window.cancelAnimationFrame(frame);
+      mediaQuery.removeEventListener('change', syncMotionPreference);
+    };
+  }, []);
+
+  useEffect(() => {
+    function handleKeyDown(event: KeyboardEvent) {
+      if (isInteractiveTarget(event.target)) return;
+
+      if (event.key === 'ArrowUp' || event.key === 'PageUp') {
+        event.preventDefault();
+        goToStage(activeIndex - 1);
+      } else if (
+        (event.key === 'ArrowDown' || event.key === 'PageDown') &&
+        activeIndex < finalCtaStage
+      ) {
+        event.preventDefault();
+        goToStage(activeIndex + 1);
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [activeIndex, goToStage]);
+
+  useEffect(() => {
     if (
       isPaused ||
       activeIndex >= finalCtaStage ||
       !isPageVisible ||
-      window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      prefersReducedMotion
     ) {
       return;
     }
 
     const timeout = window.setTimeout(() => {
-      setActiveIndex((current) => Math.min(current + 1, finalCtaStage));
+      setActiveIndex((current) => {
+        const target = Math.min(current + 1, finalCtaStage);
+        window.history.replaceState(null, '', stageHashes[target]);
+        return target;
+      });
     }, stageDurations[activeIndex]);
 
     return () => window.clearTimeout(timeout);
-  }, [activeIndex, isPageVisible, isPaused]);
-
-  function goToStage(index: number, pause = true) {
-    const target = Math.max(0, Math.min(index, formStage));
-    setActiveIndex(target);
-    setIsPaused(pause);
-
-    const hash = target === formStage ? '#join' : target === finalCtaStage ? '#join-gate' : '#top';
-    window.history.replaceState(null, '', hash);
-  }
+  }, [activeIndex, isPageVisible, isPaused, prefersReducedMotion]);
 
   function openJoin() {
     goToStage(formStage);
   }
 
+  function handlePointerDown(event: ReactPointerEvent<HTMLElement>) {
+    if (activeIndex === formStage || isInteractiveTarget(event.target)) {
+      gestureStart.current = null;
+      return;
+    }
+
+    gestureStart.current = { x: event.clientX, y: event.clientY };
+  }
+
+  function handlePointerUp(event: ReactPointerEvent<HTMLElement>) {
+    const start = gestureStart.current;
+    gestureStart.current = null;
+
+    if (!start || activeIndex === formStage || isInteractiveTarget(event.target)) return;
+
+    const horizontalDistance = Math.abs(event.clientX - start.x);
+    const verticalDistance = start.y - event.clientY;
+
+    if (Math.abs(verticalDistance) < 48 || Math.abs(verticalDistance) < horizontalDistance * 1.15) {
+      return;
+    }
+
+    const direction = verticalDistance > 0 ? 1 : -1;
+    if (direction > 0 && activeIndex >= finalCtaStage) return;
+    goToStage(activeIndex + direction);
+  }
+
+  function handleWheel(event: ReactWheelEvent<HTMLElement>) {
+    if (activeIndex === formStage || Math.abs(event.deltaY) < 24) return;
+
+    const now = Date.now();
+    if (now < wheelLockedUntil.current) return;
+
+    const direction = event.deltaY > 0 ? 1 : -1;
+    if (direction > 0 && activeIndex >= finalCtaStage) return;
+
+    wheelLockedUntil.current = now + 700;
+    goToStage(activeIndex + direction);
+  }
+
   const stageLabel =
     activeIndex === 0
-      ? 'Opening the Hackathon Club story'
+      ? 'Hackathon Club introduction'
       : activeIndex <= 4
         ? `Chapter ${activeIndex} of four: ${activeChapter?.label}`
         : activeIndex === 5
-          ? 'What stays with you'
+          ? 'What you leave with'
           : activeIndex === finalCtaStage
             ? 'Story complete. Join the club.'
             : 'Join the Hackathon Club';
@@ -160,6 +267,12 @@ export function CinematicExperience() {
     <main
       className="cinematic-experience"
       data-active-stage={activeIndex}
+      onPointerDown={handlePointerDown}
+      onPointerUp={handlePointerUp}
+      onPointerCancel={() => {
+        gestureStart.current = null;
+      }}
+      onWheel={handleWheel}
       onFocusCapture={(event) => {
         if (
           activeIndex < finalCtaStage &&
@@ -181,17 +294,6 @@ export function CinematicExperience() {
           </button>
 
           <div className="deck-chrome-actions">
-            <Button
-              aria-label={isPaused ? 'Resume automatic story' : 'Pause automatic story'}
-              className="deck-pause"
-              data-autoplay-control
-              type="button"
-              variant="ghost"
-              onClick={() => setIsPaused((current) => !current)}
-            >
-              <span className={`pause-signal${isStoryPlaying ? ' is-playing' : ''}`} aria-hidden="true" />
-              {isStoryPlaying ? 'Auto' : 'Paused'}
-            </Button>
             <Button className="deck-top-join" type="button" onClick={openJoin}>
               Join now <ClubIcon name="arrow-up-right" size={16} strokeWidth={1.8} />
             </Button>
@@ -223,24 +325,21 @@ export function CinematicExperience() {
         <div className="hero-stage-grid" aria-hidden="true" />
         <div className="deck-stage-inner hero-stage-inner">
           <div className="stage-eyebrow hero-stage-kicker">
-            <span className="stage-dot" /> Build season / no spectator mode
+            <span className="stage-dot" /> Hackathon Club
           </div>
           <h1 className="deck-display hero-stage-title">
-            Learn it.
+            Build fast.
             <br />
-            Build it.
+            Think bold.
             <br />
-            <em>Win with it.</em>
+            <em>Win together.</em>
           </h1>
           <p className="hero-stage-copy">
-            Workshops, team games and the practice that makes hackathon day feel familiar.
+            Live workshops, team games and hackathon squads for students who want to build under pressure.
           </p>
           <Button className="hero-stage-cta" type="button" onClick={openJoin}>
-            Skip to the crew <ClubIcon name="arrow-right" size={20} strokeWidth={1.8} />
+            Join the club <ClubIcon name="arrow-right" size={20} strokeWidth={1.8} />
           </Button>
-        </div>
-        <div className="hero-stage-route" aria-hidden="true">
-          <span>Workshop</span><i /><span>Build</span><i /><span>Game</span><i /><span>Win</span>
         </div>
       </section>
 
@@ -262,7 +361,6 @@ export function CinematicExperience() {
                 <span className="chapter-icon">
                   <ClubIcon name={chapter.icon} size={48} strokeWidth={1.25} />
                 </span>
-                <span className="chapter-signal"><i />{chapter.signal}</span>
               </div>
               <div className="chapter-stage-copy">
                 <p className="stage-eyebrow">{chapter.label}</p>
@@ -270,9 +368,6 @@ export function CinematicExperience() {
                 <p>{chapter.copy}</p>
                 <div className="chapter-tags">
                   {chapter.tags.map((tag) => <span key={tag}>{tag}</span>)}
-                </div>
-                <div className="chapter-next" aria-hidden="true">
-                  <span>Up next</span><i /><strong>{chapterIndex === 3 ? 'The join' : chapters[chapterIndex + 1].label}</strong>
                 </div>
               </div>
             </div>
@@ -288,8 +383,8 @@ export function CinematicExperience() {
         <div className="outcomes-stage-grid" aria-hidden="true" />
         <div className="deck-stage-inner outcomes-stage-inner">
           <div>
-            <p className="stage-eyebrow">What stays with you</p>
-            <h2 className="deck-display">More than a <em>screenshot.</em></h2>
+            <p className="stage-eyebrow">What you leave with</p>
+            <h2 className="deck-display">Skills. Teammates. <em>A playbook.</em></h2>
           </div>
           <div className="outcome-list">
             {outcomes.map((outcome, outcomeIndex) => (
@@ -310,10 +405,7 @@ export function CinematicExperience() {
         inert={activeIndex !== finalCtaStage}
       >
         <div className="join-stage-grid" aria-hidden="true" />
-        <div className="join-stage-number" aria-hidden="true">07</div>
         <div className="deck-stage-inner join-stage-inner">
-          <p className="stage-eyebrow">The story is ready when you are</p>
-          <h2 className="deck-display">Ready for your <em>first commit?</em></h2>
           <Button className="join-stage-button" type="button" onClick={openJoin}>
             Join now <ClubIcon name="arrow-right" size={25} strokeWidth={1.9} />
           </Button>
@@ -329,9 +421,8 @@ export function CinematicExperience() {
         <div className="form-stage-light" aria-hidden="true" />
         <div className="deck-stage-inner form-stage-inner">
           <div className="form-stage-intro">
-            <p className="stage-eyebrow">One small intro</p>
-            <h2 className="deck-display">Meet your <em>new crew.</em></h2>
-            <p>Tell us the basics, then take the official invite straight to WhatsApp.</p>
+            <h2 className="deck-display">Save your <em>spot.</em></h2>
+            <p>Register once, then enter the official WhatsApp group.</p>
           </div>
           <OnboardingForm />
         </div>
@@ -339,25 +430,38 @@ export function CinematicExperience() {
 
       <div className="deck-manual-controls" aria-label="Story controls">
         <Button
-          aria-label="Previous story panel"
+          aria-label="Previous section"
           className="deck-step-button"
           disabled={activeIndex === 0}
           type="button"
           variant="ghost"
           onClick={() => goToStage(activeIndex - 1)}
         >
-          <ClubIcon name="arrow-right" size={16} strokeWidth={1.8} className="deck-arrow-back" /> Back
+          <ClubIcon name="arrow-down" size={18} strokeWidth={1.8} className="deck-arrow-back" />
         </Button>
-        <Button
-          aria-label="Next story panel"
-          className="deck-step-button"
-          disabled={activeIndex >= finalCtaStage}
-          type="button"
-          variant="ghost"
-          onClick={() => goToStage(activeIndex + 1)}
-        >
-          Continue <ClubIcon name="arrow-right" size={16} strokeWidth={1.8} />
-        </Button>
+        {activeIndex < finalCtaStage && !prefersReducedMotion && (
+          <Button
+            aria-label={isPaused ? 'Play sequence' : 'Pause sequence'}
+            className="deck-step-button deck-playback-button"
+            data-autoplay-control
+            type="button"
+            variant="ghost"
+            onClick={() => setIsPaused((current) => !current)}
+          >
+            <ClubIcon name={isStoryPlaying ? 'pause' : 'play'} size={17} strokeWidth={1.8} />
+          </Button>
+        )}
+        {activeIndex < finalCtaStage && (
+          <Button
+            aria-label="Next section"
+            className="deck-step-button"
+            type="button"
+            variant="ghost"
+            onClick={() => goToStage(activeIndex + 1)}
+          >
+            <ClubIcon name="arrow-down" size={18} strokeWidth={1.8} />
+          </Button>
+        )}
       </div>
     </main>
   );

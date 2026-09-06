@@ -1,15 +1,21 @@
 import type { Metadata, Viewport } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
+import { IBM_Plex_Mono, Manrope, Syne } from 'next/font/google';
 import './globals.css';
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
+const manrope = Manrope({
+  variable: '--font-body',
   subsets: ['latin'],
 });
 
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
+const syne = Syne({
+  variable: '--font-display',
   subsets: ['latin'],
+});
+
+const ibmPlexMono = IBM_Plex_Mono({
+  variable: '--font-brand-mono',
+  subsets: ['latin'],
+  weight: ['400', '500', '600'],
 });
 
 export const metadata: Metadata = {
@@ -55,7 +61,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${manrope.variable} ${syne.variable} ${ibmPlexMono.variable} antialiased`}
       >
         {children}
       </body>

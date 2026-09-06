@@ -55,12 +55,14 @@ const emptyProfile: MemberProfile = {
 export function OnboardingForm() {
   const [profile, setProfile] = useState<MemberProfile>(emptyProfile);
   const [isComplete, setIsComplete] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState('');
 
   function updateField(field: keyof MemberProfile, value: string) {
     setProfile((current) => ({ ...current, [field]: value }));
   }
 
-  function handleSubmit(event: SyntheticEvent<HTMLFormElement>) {
+  async function handleSubmit(event: SyntheticEvent<HTMLFormElement>) {
     event.preventDefault();
 
     const cleanProfile = {
@@ -69,9 +71,28 @@ export function OnboardingForm() {
       phone: profile.phone.trim(),
     };
 
-    window.localStorage.setItem('hackathon-club-profile', JSON.stringify(cleanProfile));
-    setProfile(cleanProfile);
-    setIsComplete(true);
+    setIsSubmitting(true);
+    setSubmitError('');
+
+    try {
+      const response = await fetch('/api/join', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(cleanProfile),
+      });
+      const result = (await response.json()) as { ok?: boolean; message?: string };
+
+      if (!response.ok || !result.ok) {
+        throw new Error(result.message || 'We could not save your details.');
+      }
+
+      setProfile(cleanProfile);
+      setIsComplete(true);
+    } catch (error) {
+      setSubmitError(error instanceof Error ? error.message : 'We could not save your details.');
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   if (isComplete) {
@@ -80,11 +101,10 @@ export function OnboardingForm() {
         <div className="success-mark" aria-hidden="true">
           <CheckIcon />
         </div>
-        <span className="form-step-label">Details ready</span>
-        <h3>Your crew is one tap away.</h3>
+        <span className="form-step-label">You&apos;re registered</span>
+        <h3>Meet the crew.</h3>
         <p>
-          Nice one, {profile.name.split(' ')[0]}. This form stays on your
-          device; the official WhatsApp invite is how you enter the crew.
+          {profile.name.split(' ')[0]}, your details are saved. Join the official group for workshop and event updates.
         </p>
 
         <a
@@ -98,9 +118,6 @@ export function OnboardingForm() {
           <ArrowRightIcon />
         </a>
 
-        <button className="edit-profile-button" type="button" onClick={() => setIsComplete(false)}>
-          Edit my details
-        </button>
       </div>
     );
   }
@@ -109,9 +126,8 @@ export function OnboardingForm() {
     <form className="onboarding-form" onSubmit={handleSubmit}>
       <div className="form-heading">
         <div className="form-step-label">
-          <SparkleIcon /> Step 01 · Your details
+          <SparkleIcon /> Your details
         </div>
-        <p>Thirty seconds. That&apos;s it.</p>
       </div>
 
       <div className="form-fields">
@@ -167,14 +183,19 @@ export function OnboardingForm() {
         </label>
       </div>
 
-      <Button className="onboarding-submit" type="submit">
-        Unlock the WhatsApp invite
+      <Button className="onboarding-submit" disabled={isSubmitting} type="submit">
+        {isSubmitting ? 'Saving…' : 'Continue to WhatsApp'}
         <ArrowRightIcon />
       </Button>
 
+      {submitError && (
+        <p className="form-error" role="alert">
+          {submitError}
+        </p>
+      )}
+
       <p className="form-privacy">
-        Your details stay in this browser. The next step opens the official
-        Hackathon Club WhatsApp group.
+        Your details are saved by Hackathon Club.
       </p>
     </form>
   );

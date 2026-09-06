@@ -6,6 +6,8 @@ export type ClubIconName =
   | 'code'
   | 'gamepad'
   | 'message'
+  | 'pause'
+  | 'play'
   | 'sparkles'
   | 'trophy'
   | 'users'
@@ -57,6 +59,12 @@ export function ClubIcon({
         <path d="M8 10h8M8 13.5h5.5" />
       </>
     ),
+    pause: (
+      <>
+        <path d="M8.5 5v14M15.5 5v14" />
+      </>
+    ),
+    play: <path d="m8 5 11 7-11 7V5Z" />,
     sparkles: (
       <>
         <path d="M12 2.5c.4 4.7 2.8 7.1 7.5 7.5-4.7.4-7.1 2.8-7.5 7.5-.4-4.7-2.8-7.1-7.5-7.5 4.7-.4 7.1-2.8 7.5-7.5Z" />
