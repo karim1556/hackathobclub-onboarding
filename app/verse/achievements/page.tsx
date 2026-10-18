@@ -13,6 +13,6 @@ export default function AchievementsPage() {
     <header className="achievements-nav"><a href="/verse/projects">↖ <span>Student projects</span></a><a href="/verse" aria-label="Hackathon Club 2.0 — The Verse"><ClubMark /></a></header>
     <div className="achievements-heading"><div><p>THE VERSE / THIS SEMESTER</p><h1>In <span>full force.</span></h1></div><p className="achievements-heading-note">New rooms. Bigger ideas.<br /><span>The same Hackathon Club.</span></p></div>
     <SemesterShowcase />
-    <footer className="achievements-footer"><span>HACKATHON CLUB 2.0 <i /> THE NEXT CHAPTER</span><a href="/verse">Back to the Verse ↗</a></footer>
+    <footer className="achievements-footer"><span>HACKATHON CLUB 2.0 <i /> THE NEXT CHAPTER</span><a href="/verse/events">Workshops & events ↗</a></footer>
   </div></main>;
 }
