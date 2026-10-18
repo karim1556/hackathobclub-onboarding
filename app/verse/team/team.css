@@ -1,0 +1,154 @@
+.team-page {
+  height: 100dvh;
+  overflow: auto;
+  padding: 18px;
+  background: #0a0d15;
+  color: #e7f0ff;
+}
+
+.team-board {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: minmax(160px, 1fr) auto 48px auto 50px;
+  min-height: max(780px, calc(100dvh - 36px));
+  overflow: hidden;
+  isolation: isolate;
+  background:
+    radial-gradient(ellipse at 50% 24%, #42649888, transparent 48%),
+    radial-gradient(ellipse at 92% 0%, #183ba780, transparent 50%),
+    linear-gradient(125deg, #071124, #142740 48%, #071126);
+}
+
+.team-board::before {
+  position: absolute;
+  z-index: 15;
+  inset: 0;
+  content: '';
+  box-shadow: inset 0 0 130px 45px #020716b3;
+  pointer-events: none;
+}
+
+.team-spotlight {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, #b5e2ff44, #7db5ff26 55%, #9d9cff08);
+  clip-path: polygon(49% 85px, 51% 85px, 110% 100%, -10% 100%);
+  pointer-events: none;
+}
+
+.team-grain { position: absolute; z-index: 16; inset: 0; pointer-events: none; mix-blend-mode: soft-light; }
+.team-header { position: absolute; z-index: 25; top: 22px; right: 30px; left: 30px; display: flex; align-items: flex-start; justify-content: space-between; }
+.team-back { display: inline-flex; align-items: center; gap: 12px; min-height: 40px; color: #b7c9e6; font-family: var(--font-brand-mono), monospace; font-size: 10px; letter-spacing: .04em; transition: color 200ms; }
+.team-back:hover { color: #85e3ff; }
+.team-back > span { font-size: 23px; }
+.team-back:focus-visible, .team-brand:focus-visible { outline-color: #85e3ff; }
+.team-brand .verse-club-logo { display: block; width: 72px; height: auto; }
+.team-bulb { position: absolute; z-index: 12; top: -10px; left: 50%; width: 210px; height: 200px; transform: translateX(-50%); pointer-events: none; }
+
+.team-polaroid {
+  --rotation: 0deg;
+  position: absolute;
+  z-index: 3;
+  width: clamp(165px, 20vw, 260px);
+  margin: 0;
+  padding: 10px 10px 0;
+  border: 1px solid #d5e4fa8c;
+  background: linear-gradient(135deg, #d8e6f2, #9fb7d1);
+  box-shadow: 2px 8px 5px #02071455, 10px 20px 34px #02071460, inset 0 0 0 3px #eff5ff18;
+  transform: rotate(var(--rotation));
+  transition: transform 400ms cubic-bezier(.2,.7,.2,1), box-shadow 400ms;
+}
+
+.team-polaroid-karishma { --rotation: -12deg; top: 10%; left: 7%; }
+.team-polaroid-vedanth { --rotation: 13deg; top: 8%; right: 7%; }
+.team-polaroid-karim { --rotation: -15deg; bottom: 12%; left: 3%; }
+.team-polaroid-manas { --rotation: 11deg; bottom: 10%; right: 3%; }
+.team-polaroid-saathvik { --rotation: -5deg; position: relative; grid-column: 1; grid-row: 4; justify-self: center; width: clamp(165px, 18vw, 240px); }
+.team-polaroid:hover { z-index: 22; box-shadow: 2px 12px 5px #02071455, 10px 25px 45px #02071499; transform: translateY(-9px) rotate(0deg) scale(1.045); }
+
+.team-tape { position: absolute; z-index: 2; top: -13px; left: 35%; width: 63px; height: 25px; background: #abc4ed65; box-shadow: 0 1px 2px #172e582b; transform: rotate(-7deg); clip-path: polygon(3% 0, 98% 3%, 100% 91%, 2% 100%, 4% 80%, 0 60%, 4% 40%, 0 20%); }
+.team-portrait { position: relative; overflow: hidden; aspect-ratio: 446 / 495; border: 1px solid #0c234b80; background: #1f4a85; }
+.team-portrait img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center top; filter: grayscale(1) contrast(1.12) brightness(.83); mix-blend-mode: luminosity; transition: filter 500ms; }
+.team-portrait::after { position: absolute; inset: 0; content: ''; background: linear-gradient(145deg, #10264c15, #1b53a54d); transition: opacity 500ms; pointer-events: none; }
+.team-polaroid:hover .team-portrait img { filter: grayscale(0) contrast(1.03) brightness(1); mix-blend-mode: normal; }
+.team-polaroid:hover .team-portrait::after { opacity: 0; }
+.team-photo-number { position: absolute; z-index: 1; right: 7px; bottom: 7px; color: #d0def2a6; font-family: var(--font-brand-mono), monospace; font-size: 7px; letter-spacing: .14em; }
+.team-polaroid figcaption { display: flex; min-height: 57px; flex-direction: column; align-items: center; justify-content: center; gap: 2px; padding: 8px 0 10px; color: #0a2147; }
+.team-member-name { font-family: Georgia, 'Times New Roman', serif; font-size: clamp(14px, 1.5vw, 21px); font-style: italic; line-height: 1.2; }
+.team-member-role { font-family: 'Courier New', monospace; font-size: clamp(8px, .7vw, 10px); letter-spacing: .02em; }
+
+.team-title-block { position: relative; z-index: 20; grid-column: 1; grid-row: 2; justify-self: center; width: max-content; max-width: 94%; text-align: center; transform: rotate(-5deg); }
+.team-kicker { margin: 0 0 15px; color: #d5e6ff; font-family: 'Courier New', monospace; font-size: clamp(16px, 2vw, 27px); letter-spacing: -.05em; text-shadow: 2px 2px #0b163a; }
+.team-title-block h1 { margin: 0; font-size: clamp(66px, min(8.8vw, 11dvh), 145px); font-weight: 700; line-height: 1; }
+.team-title-letters { display: flex; align-items: center; justify-content: center; gap: .21em; }
+.team-title-word { display: inline-flex; align-items: center; gap: .035em; }
+.team-letter { position: relative; display: inline-grid; min-width: .69em; height: 1.12em; place-items: center; padding: 0 .025em; border: 1px solid #d8ebff30; background: var(--paper); box-shadow: 3px 5px 0 #020e2b40, 5px 9px 14px #02081b50; color: var(--ink); transform: translateY(var(--offset)) rotate(var(--angle)); text-shadow: 1px 2px #ffffff12; }
+.team-letter::after { position: absolute; inset: 0; border: 1px solid #ffffff18; content: ''; background: repeating-linear-gradient(10deg, #fff0 0 2px, #ffffff05 2px 3px); pointer-events: none; }
+.team-title-word:first-child .team-letter:nth-child(2) { height: .91em; font-size: .88em; }
+.team-title-word:first-child .team-letter:last-child { clip-path: polygon(3% 3%, 93% 0, 100% 95%, 0 100%); }
+.team-title-word:last-child .team-letter:first-child { height: 1.21em; }
+.team-title-word:last-child .team-letter:nth-child(2) { clip-path: polygon(0 0, 96% 3%, 100% 100%, 5% 97%); }
+.team-title-word:last-child .team-letter:nth-child(3) { font-size: .9em; height: 1.21em; }
+.team-subtitle { margin: 26px 0 0; color: #d3e0f9; font-family: 'Courier New', monospace; font-size: clamp(13px, 1.55vw, 21px); line-height: 1.5; letter-spacing: -.04em; text-shadow: 1px 2px #041330; }
+.team-title-doodle { position: absolute; top: -27px; right: -28px; color: #95b5ff; font-size: 45px; transform: rotate(12deg); }
+
+.team-scribble { position: absolute; z-index: 2; color: #91b0da7a; font-family: Georgia, serif; font-size: 14px; font-style: italic; line-height: 1.4; pointer-events: none; }
+.team-scribble-one { top: 12%; left: 31%; transform: rotate(-13deg); }
+.team-scribble-one > span { display: block; margin-left: 45px; font-size: 32px; }
+.team-scribble-two { right: 27%; bottom: 17%; transform: rotate(9deg); }
+.team-footer { position: absolute; z-index: 20; right: 28px; bottom: 18px; left: 28px; display: flex; align-items: center; justify-content: space-between; gap: 20px; color: #96adcd; font-family: var(--font-brand-mono), monospace; font-size: 8px; letter-spacing: .12em; }
+.team-next { display: inline-flex; align-items: center; gap: 12px; min-height: 36px; color: #c5d9ff; font-size: 10px; letter-spacing: .03em; transition: color 180ms; }
+.team-next > span { font-size: 22px; }
+.team-next:hover { color: #85e3ff; }
+.team-next:focus-visible { outline-color: #85e3ff; }
+
+@media (min-width: 1500px) {
+  .team-polaroid { width: min(19vw, 310px); }
+  .team-polaroid-saathvik { width: min(17vw, 240px); }
+}
+
+@media (max-width: 1000px) and (min-width: 601px) {
+  .team-polaroid { width: 23%; padding: 8px 8px 0; }
+  .team-polaroid-karishma { left: 7%; }
+  .team-polaroid-vedanth { right: 6%; }
+  .team-polaroid-karim { left: 3%; bottom: 12%; }
+  .team-polaroid-manas { right: 3%; bottom: 10%; }
+  .team-title-block h1 { font-size: 8.6vw; }
+  .team-scribble-one { top: 15%; left: 35%; font-size: 11px; }
+  .team-scribble-two { right: 28%; bottom: 20%; font-size: 11px; }
+}
+
+@media (max-width: 600px) {
+  .team-page { padding: 9px; }
+  .team-board { display: block; min-height: 1180px; }
+  .team-header { top: 15px; right: 18px; left: 18px; }
+  .team-back { font-size: 9px; gap: 7px; }
+  .team-brand .verse-club-logo { width: 53px; }
+  .team-bulb { width: 190px; height: 182px; top: 18px; }
+  .team-board::before { box-shadow: inset 0 0 70px 10px #02071680; }
+  .team-spotlight { clip-path: polygon(49% 100px, 51% 100px, 170% 100%, -70% 100%); }
+  .team-polaroid { width: 38%; max-width: 195px; padding: 7px 7px 0; }
+  .team-polaroid-karishma { top: 152px; left: 7%; }
+  .team-polaroid-vedanth { top: 150px; right: 7%; }
+  .team-polaroid-karim { top: 620px; bottom: auto; left: 7%; }
+  .team-polaroid-manas { top: 630px; bottom: auto; right: 7%; }
+  .team-polaroid-saathvik { position: absolute; top: 870px; bottom: auto; left: 31%; }
+  .team-polaroid figcaption { min-height: 53px; }
+  .team-member-name { font-size: 14px; }
+  .team-member-role { font-size: 7px; }
+  .team-title-block { position: absolute; top: 435px; left: 50%; max-width: 96%; transform: translate(-50%, -15%) rotate(-5deg); }
+  .team-title-block h1 { font-size: clamp(43px, 11vw, 65px); }
+  .team-kicker { margin-bottom: 18px; font-size: 17px; }
+  .team-title-letters { gap: .15em; }
+  .team-subtitle { margin-top: 24px; font-size: 14px; }
+  .team-title-doodle { top: -26px; right: 4px; font-size: 28px; }
+  .team-scribble-one { top: 95px; left: 10%; font-size: 10px; }
+  .team-scribble-one > span { display: none; }
+  .team-scribble-two { right: 6%; bottom: 128px; font-size: 11px; }
+  .team-footer { right: 16px; bottom: 18px; left: 16px; font-size: 6px; letter-spacing: .04em; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .team-polaroid, .team-portrait img, .team-portrait::after { transition: none; }
+}

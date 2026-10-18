@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import {
   type CSSProperties,
   type PointerEvent as ReactPointerEvent,
@@ -294,6 +295,9 @@ export function CinematicExperience() {
           </button>
 
           <div className="deck-chrome-actions">
+            <Link className="deck-verse-link" href="/verse">
+              Enter the Verse <ClubIcon name="arrow-up-right" size={15} />
+            </Link>
             <Button className="deck-top-join" type="button" onClick={openJoin}>
               Join now <ClubIcon name="arrow-up-right" size={16} strokeWidth={1.8} />
             </Button>

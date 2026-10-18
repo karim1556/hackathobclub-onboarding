@@ -1,0 +1,88 @@
+.achievements-page { height: 100dvh; overflow: auto; background: #050919; color: #e6efff; font-family: var(--font-body),Arial,sans-serif; }
+.achievements-shell { width: min(1640px,100%); margin: auto; padding: 0 clamp(20px,4.5vw,70px); background: radial-gradient(ellipse at 90% 0,#143d9a40,transparent 35%); }
+.achievements-nav { display: flex; justify-content: space-between; align-items: center; padding: 17px 0 10px; }
+.achievements-nav > a:first-child { display: flex; align-items: center; gap: 12px; color: #93acd3; font-family: var(--font-brand-mono),monospace; font-size: 10px; }
+.achievements-nav .verse-club-logo { display: block; width: 57px; height: auto; }
+.achievements-page :is(a,button):focus-visible { outline: 2px solid #9cdbff; outline-offset: 5px; }
+.achievements-heading { display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; padding: 9px 0 25px; }
+.achievements-heading > div > p { margin: 0 0 10px; color: #7d9bc8; font-family: var(--font-brand-mono),monospace; font-size: 9px; letter-spacing: .15em; }
+.achievements-heading h1 { margin: 0; font-family: Arial,Helvetica,sans-serif; font-size: clamp(43px,5.4vw,76px); font-weight: 400; line-height: .98; letter-spacing: -.065em; }
+.achievements-heading h1 span { color: transparent; background: linear-gradient(170deg,#e4f5ff,#93c8ff 60%,#9b92f5); background-clip: text; }
+.achievements-heading-note { margin: 0 0 3px; color: #b5cbea; font-size: 11px; line-height: 1.7; text-align: right; }
+.achievements-heading-note span { color: #718bb3; }
+.semester-gallery { position: relative; isolation: isolate; height: clamp(400px,65dvh,700px); overflow: hidden; border: 1px solid #9abaf43d; border-radius: 23px; background: #091329; box-shadow: 0 25px 80px #0004,0 0 50px #16347c20; }
+.semester-panel { position: absolute; z-index: 1; top: 0; bottom: 0; left: calc(var(--panel-index) * 16.666667% - 6%); width: 22.666667%; overflow: hidden; padding: 0; border: 0; color: #edf5ff; background: #101d40; cursor: pointer; clip-path: polygon(26.470588% 0,100% 0,73.529412% 100%,0 100%); transition: left 850ms cubic-bezier(.22,.8,.22,1),width 850ms cubic-bezier(.22,.8,.22,1),clip-path 850ms cubic-bezier(.22,.8,.22,1),opacity 650ms ease; }
+.semester-panel:first-child { clip-path: polygon(0 0,100% 0,73.529412% 100%,0 100%); }
+.semester-panel:last-of-type { clip-path: polygon(26.470588% 0,100% 0,100% 100%,0 100%); }
+.semester-photo-haze { position: absolute; inset: -30px; background-position: center; background-size: cover; filter: blur(22px) brightness(.32) saturate(.65); }
+.semester-photo { position: absolute; inset: 0; display: block; }
+.semester-photo img { width: 100%; height: 100%; object-fit: cover; object-position: var(--photo-position); filter: saturate(.8) brightness(.88); transition: filter 850ms ease; }
+.semester-panel-wash { position: absolute; inset: 0; background: linear-gradient(180deg,#0b1b5228,transparent 35%,#06143144 55%,#030b23ed),linear-gradient(115deg,#1653c44a,#5b4bb629); transition: opacity 700ms; }
+.semester-panel-label { position: absolute; bottom: 34px; left: 11%; display: flex; flex-direction: column; align-items: flex-start; gap: 7px; width: 60%; text-align: left; transition: opacity 250ms,transform 500ms; }
+.semester-panel:first-child .semester-panel-label { left: 31%; width: 45%; }
+.semester-panel-number { display: flex; justify-content: space-between; width: 100%; margin-bottom: 14px; padding-bottom: 11px; border-bottom: 1px solid #b3ccff55; color: #b9d7ff; font-family: var(--font-brand-mono),monospace; font-size: 9px; letter-spacing: .08em; }
+.semester-panel-number > span { color: var(--moment-accent); font-family: Arial,sans-serif; font-size: 19px; line-height: .5; }
+.semester-panel-event { font-family: var(--font-brand-mono),monospace; font-size: 8px; letter-spacing: .06em; text-transform: uppercase; color: #b8cdef; }
+.semester-panel-team { font-family: Arial,sans-serif; font-size: clamp(16px,1.8vw,25px); line-height: 1.04; letter-spacing: -.04em; }
+.semester-panel-result { margin-top: 4px; color: var(--moment-accent); font-size: 9px; line-height: 1.5; }
+.semester-gallery[data-expanded='true'] .semester-panel { opacity: 0; pointer-events: none; }
+.semester-gallery[data-expanded='true'] .semester-panel[data-active='true'] { z-index: 3; left: 0; width: 100%; opacity: 1; clip-path: polygon(0 0,100% 0,100% 100%,0 100%); pointer-events: auto; }
+.semester-panel[data-active='true'] .semester-photo img { object-fit: contain; filter: saturate(.95) brightness(.98); }
+.semester-panel[data-active='true'] .semester-panel-wash { opacity: 0; }
+.semester-panel[data-active='true'] .semester-panel-label { opacity: 0; transform: translateY(20px); }
+.semester-panel:focus-visible { outline: none; }
+.semester-panel:focus-visible::after { position: absolute; inset: 5px; border: 2px solid #b9ddff; border-radius: 18px; content: ''; }
+.semester-gallery-corner { position: absolute; z-index: 4; top: 22px; right: 24px; padding: 6px 8px; border-radius: 5px; background: #03091d66; color: #d1e2ff; font-family: var(--font-brand-mono),monospace; font-size: 8px; letter-spacing: .14em; pointer-events: none; }
+.semester-gallery-corner span { color: #9eb9e4; }
+.semester-expanded-label { position: absolute; z-index: 4; bottom: 19px; left: 21px; display: flex; align-items: center; gap: 1px; overflow: hidden; border: 1px solid #b8d3ff4f; border-radius: 7px; background: #061126dc; color: #dcecff; font-family: var(--font-brand-mono),monospace; font-size: 9px; backdrop-filter: blur(15px); animation: semester-caption-in 400ms ease-out; pointer-events: none; }
+.semester-expanded-label > span { padding: 10px 12px; }
+.semester-expanded-label > span:last-child { border-left: 1px solid #9eb8e53d; color: #9cd7ff; }
+.semester-controls { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 17px 0; border-bottom: 1px solid #7b9dcc30; }
+.semester-controls button { border: 0; background: none; color: #7f99c2; cursor: pointer; }
+.semester-overview { display: inline-flex; flex-shrink: 0; align-items: center; gap: 9px; padding: 7px 0; font-family: var(--font-brand-mono),monospace; font-size: 9px; }
+.semester-controls button[aria-pressed='true'] { color: #dceeff; }
+.semester-photo-nav { display: flex; gap: clamp(10px,2.3vw,34px); }
+.semester-photo-tab { display: flex; align-items: center; gap: 7px; position: relative; padding: 9px 0; font-size: 9px; transition: color 250ms; }
+.semester-photo-tab > span:first-child { font-family: var(--font-brand-mono),monospace; font-size: 8px; opacity: .55; }
+.semester-photo-tab::after { position: absolute; right: 0; bottom: -18px; left: 0; height: 2px; background: #89beff; box-shadow: 0 0 12px #4395ff77; opacity: 0; content: ''; transition: opacity 250ms; }
+.semester-photo-tab[aria-pressed='true']::after { opacity: 1; }
+.semester-step { display: flex; gap: 6px; }
+.semester-step button { width: 31px; height: 31px; border: 1px solid #7799ce40; border-radius: 50%; font-size: 17px; transition: border-color 200ms,color 200ms; }
+.semester-controls button:hover { color: #d6eaff; }
+.semester-step button:hover { border-color: #96c9ff; }
+.semester-caption { display: flex; justify-content: space-between; align-items: center; gap: 25px; min-height: 137px; padding: 24px 0 27px; }
+.semester-caption-copy { animation: semester-caption-in 400ms ease-out; }
+.semester-caption-kicker { margin: 0 0 9px; color: #7895c2; font-family: var(--font-brand-mono),monospace; font-size: 8px; letter-spacing: .11em; text-transform: uppercase; }
+.semester-caption h2 { margin: 0; font-family: Arial,sans-serif; font-size: clamp(24px,2.4vw,34px); font-weight: 400; line-height: 1.1; letter-spacing: -.05em; }
+.semester-caption-copy > p:last-child { max-width: 560px; margin: 9px 0 0; color: #8fa6ca; font-size: 11px; line-height: 1.6; }
+.semester-caption-result { display: flex; flex-shrink: 0; flex-direction: column; gap: 8px; text-align: right; }
+.semester-caption-result > span { color: #8da7ce; font-family: var(--font-brand-mono),monospace; font-size: 9px; }
+.semester-caption-result > strong { color: #b4d3ff; font-size: 15px; font-weight: 400; }
+.achievements-footer { display: flex; align-items: center; justify-content: space-between; gap: 15px; padding: 22px 0; border-top: 1px solid #7095cb30; color: #7590b8; font-family: var(--font-brand-mono),monospace; font-size: 8px; }
+.achievements-footer > span { display: flex; gap: 12px; align-items: center; }
+.achievements-footer i { width: 3px; height: 3px; border-radius: 50%; background: #91b6e8; }
+.achievements-footer a { color: #b8d4f5; white-space: nowrap; }
+@keyframes semester-caption-in { from { opacity: 0; transform: translateY(7px); } to { opacity: 1; transform: translateY(0); } }
+@media (max-width: 1000px) { .semester-photo-tab > span:last-child { display: none; } .semester-photo-nav { gap: 22px; } .semester-panel-label { bottom: 25px; } .semester-panel-team { font-size: 18px; } }
+@media (max-width: 700px) {
+  .achievements-shell { padding: 0 18px; }
+  .achievements-nav { padding-top: 14px; } .achievements-nav .verse-club-logo { width: 46px; }
+  .achievements-heading { padding: 13px 0 22px; } .achievements-heading > div > p { font-size: 8px; } .achievements-heading h1 { font-size: 49px; }
+  .achievements-heading-note { display: none; }
+  .semester-gallery { height: clamp(390px,57dvh,590px); border-radius: 17px; }
+  .semester-panel-label { width: 50%; bottom: 22px; padding-left: 0; gap: 0; }
+  .semester-panel-number { margin: 0; padding-bottom: 0; border: 0; font-size: 10px; }
+  .semester-panel-number > span,.semester-panel-event,.semester-panel-team,.semester-panel-result { display: none; }
+  .semester-gallery-corner { top: 15px; right: 14px; font-size: 7px; }
+  .semester-expanded-label { left: 12px; bottom: 12px; font-size: 8px; } .semester-expanded-label > span { padding: 8px; }
+  .semester-controls { flex-wrap: wrap; gap: 13px 8px; padding: 12px 0; }
+  .semester-overview { font-size: 8px; gap: 6px; } .semester-overview svg { width: 15px; }
+  .semester-photo-nav { gap: 2px; } .semester-photo-tab { justify-content: center; min-width: 25px; min-height: 36px; padding: 8px 1px; } .semester-photo-tab > span:first-child { font-size: 10px; } .semester-photo-tab::after { bottom: -13px; }
+  .semester-step { gap: 4px; } .semester-step button { width: 26px; height: 26px; font-size: 14px; }
+  .semester-caption { align-items: flex-start; flex-direction: column; gap: 19px; min-height: 200px; padding: 23px 0; }
+  .semester-caption h2 { font-size: 28px; } .semester-caption-copy > p:last-child { font-size: 11px; }
+  .semester-caption-result { gap: 5px; text-align: left; } .semester-caption-result > strong { font-size: 13px; }
+  .achievements-footer { font-size: 7px; } .achievements-footer > span { gap: 6px; } .achievements-footer > span i { display: none; }
+}
+@media (max-width: 360px) { .semester-overview > span { display: none; } .semester-photo-nav { gap: 4px; } }
+@media (prefers-reduced-motion: reduce) { .semester-panel,.semester-photo img,.semester-panel-label,.semester-panel-wash { transition: none; } .semester-caption-copy,.semester-expanded-label { animation: none; } }

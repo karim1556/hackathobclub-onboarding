@@ -171,6 +171,17 @@ input:focus-visible {
   gap: 7px;
 }
 
+.deck-verse-link {
+  display: inline-flex;
+  min-height: 42px;
+  align-items: center;
+  gap: 7px;
+  padding: 0 12px;
+  color: #e2eaff;
+  font-size: 12px;
+  font-weight: 600;
+}
+
 .deck-top-join,
 .deck-step-button {
   min-height: 42px;

@@ -1,0 +1,220 @@
+.season-page { height: 100dvh; overflow: auto; background: #050a19; color: #e5edff; font-family: var(--font-body), Arial, sans-serif; scroll-behavior: smooth; }
+.season-shell { width: min(1440px, 100%); margin: auto; padding: 0 clamp(22px, 5vw, 76px); background: radial-gradient(ellipse at 85% 8%, #12276160, transparent 30%); }
+.season-nav { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; }
+.season-nav > a:first-child { display: flex; align-items: center; gap: 13px; color: #91a9d1; font-family: var(--font-brand-mono), monospace; font-size: 11px; }
+.season-nav .verse-club-logo { width: 52px; height: auto; }
+.season-page button, .season-page summary, .season-page a, .season-page input { -webkit-tap-highlight-color: transparent; }
+.season-page :is(button, a, summary, input):focus-visible { outline: 2px solid #87deff; outline-offset: 5px; }
+.season-heading { display: flex; align-items: flex-end; justify-content: space-between; gap: 25px; padding: 12px 0 24px; }
+.season-heading .season-eyebrow { margin-bottom: 9px; }
+.season-eyebrow { margin: 0 0 18px; color: #819bc9; font-family: var(--font-brand-mono), monospace; font-size: 9px; letter-spacing: .16em; }
+.season-heading h1 { position: relative; width: fit-content; margin: 0; font-family: Arial, Helvetica, sans-serif; font-size: clamp(28px, 3.2vw, 46px); font-weight: 500; line-height: 1.08; letter-spacing: -.055em; }
+.season-heading h1 em { font-family: Georgia, serif; font-weight: 400; letter-spacing: -.06em; color: #a7b9ff; }
+.season-explore { display: inline-flex; flex-shrink: 0; align-items: center; gap: 20px; padding: 8px 0; border: 0; border-bottom: 1px solid #547bb75e; background: transparent; color: #bad2f5; font-size: 10px; cursor: pointer; }
+.season-explore > span { font-size: 19px; }
+.season-poster { position: relative; min-width: 0; overflow: hidden; border-radius: 29px; box-shadow: 0 20px 40px #0004; }
+.season-poster::after { position: absolute; inset: 0; border: 1px solid #ffffff29; border-radius: inherit; background: repeating-linear-gradient(15deg, #ffffff03 0 1px, transparent 1px 4px); pointer-events: none; content: ''; }
+.season-card-top { display: flex; align-items: center; justify-content: space-between; color: inherit; font-family: var(--font-brand-mono), monospace; font-size: 8px; letter-spacing: .08em; opacity: .75; }
+.season-card-top > span:last-child { font-size: 21px; }
+.season-poster h2 { position: relative; z-index: 1; margin: 24px 0 0; font-family: Arial, sans-serif; font-size: clamp(25px, 3vw, 42px); font-weight: 500; letter-spacing: -.055em; line-height: 1.02; }
+.season-appearances { display: flex; flex-direction: column; padding: 24px 27px 0; background: radial-gradient(ellipse at 100% 30%, #2e7cf9, transparent 65%), linear-gradient(150deg,#1b49d6,#091e70); }
+.season-big-number { position: relative; z-index: 1; display: flex; margin-top: auto; padding-top: 50px; font-family: Arial, sans-serif; font-size: clamp(80px, 8.5vw, 128px); line-height: .95; font-weight: 500; letter-spacing: -.085em; font-variant-numeric: tabular-nums; }
+.season-big-number > span:last-child { padding-top: 7px; font-size: .64em; }
+.season-number-label { position: relative; z-index: 1; margin: 5px 0 29px; font-size: 15px; letter-spacing: -.04em; }
+.season-card-split { display: grid; grid-template-columns: 1fr 1fr; margin: 0 -27px; background: #9adfff; color: #082967; }
+.season-card-split > div { display: flex; flex-direction: column; gap: 3px; padding: 19px 24px 24px; }
+.season-card-split > div:last-child { background: #6c65e9; color: #f0eeff; }
+.season-card-split strong { font-size: 42px; line-height: 1; font-weight: 500; letter-spacing: -.06em; }
+.season-card-split span { font-size: 11px; }
+.season-orbit { position: absolute; top: 105px; right: -95px; width: 300px; height: 300px; opacity: .45; transform: rotate(-24deg); }
+.season-orbit > span { position: absolute; inset: 25px; border: 1px solid #a3d9ff; border-radius: 50%; }
+.season-orbit > span:nth-child(2) { inset: 55px 0; }
+.season-orbit > span:nth-child(3) { inset: 0 55px; }
+.season-orbit i { position: absolute; inset: 0; display: grid; place-items: center; font-family: Georgia, serif; font-size: 95px; font-style: normal; letter-spacing: -.12em; color: #74b2ff; }
+.season-orbit b { position: absolute; top: 32px; left: 62px; font-size: 33px; color: #c3f1ff; }
+.season-moments { display: flex; flex-direction: column; padding: 24px 27px; background: linear-gradient(125deg,#e6f4ff,#d0d6fb 90%); color: #2243bd; }
+.season-moments h2 { font-weight: 600; }
+.season-funnel { position: absolute; top: 134px; left: -2%; width: 104%; color: #5a50e3; overflow: visible; }
+.season-funnel circle { fill: #5145e0; transform-box: fill-box; transform-origin: center; }
+.season-moments-copy { position: relative; z-index: 1; margin-top: auto; padding-top: 220px; }
+.season-moments-copy strong { display: block; font-size: 79px; font-weight: 500; line-height: .9; letter-spacing: -.085em; }
+.season-moments-copy p { margin: 6px 0 0; font-size: 24px; font-weight: 500; line-height: 1; letter-spacing: -.05em; }
+.season-poster button { position: relative; z-index: 1; display: flex; align-items: center; justify-content: space-between; gap: 10px; width: 100%; margin-top: 24px; padding: 13px 0 0; border: 0; border-top: 1px solid currentColor; background: transparent; color: inherit; font-size: 10px; text-align: left; cursor: pointer; }
+.season-poster button > span { font-size: 20px; }
+.season-wins { display: flex; flex-direction: column; padding: 24px 27px; background: radial-gradient(ellipse at 0 100%,#627bfa,transparent 65%), linear-gradient(145deg,#4231b4,#39217c); }
+.season-wins .season-big-number { margin-top: 30px; padding-top: 0; color: #b9f3ff; }
+.season-wins .season-number-label { margin-bottom: 10px; color: #c6ceff; }
+.season-bars { position: relative; display: flex; height: 160px; flex: 1; min-height: 120px; align-items: flex-end; gap: 4px; margin-top: 10px; overflow: hidden; }
+.season-bars > span { flex: 1; height: var(--bar-height); background: linear-gradient(#81e3ff,#3fa4f8); transform-origin: bottom; }
+.season-bars > i { position: absolute; top: 0; right: 5px; color: #b5eeff; font-size: 45px; font-style: normal; }
+.season-source { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 5px 20px; margin: 15px 0 0; color: #778aaf; font-size: 9px; line-height: 1.7; }
+.season-record { padding-top: 90px; scroll-margin-top: 25px; }
+.season-record-heading { display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; }
+.season-record-heading .season-eyebrow { margin-bottom: 13px; }
+.season-record-heading h2 { margin: 0; font-family: Arial, sans-serif; font-size: clamp(28px, 3.5vw, 46px); font-weight: 400; letter-spacing: -.06em; line-height: 1.1; }
+.season-record-heading h2 > span { color: #8b8cf6; }
+.season-record-heading > span { flex-shrink: 0; padding-bottom: 4px; color: #6984b6; font-family: var(--font-brand-mono), monospace; font-size: 8px; letter-spacing: .1em; }
+.season-filters { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 30px; padding-bottom: 22px; border-bottom: 1px solid #5f7ca034; }
+.season-filters button { display: inline-flex; align-items: center; gap: 16px; padding: 12px 18px; border: 1px solid #637dac45; border-radius: 30px; background: transparent; color: #98aed1; font-size: 12px; cursor: pointer; transition: background 220ms,color 220ms; }
+.season-filters button > span { font-family: var(--font-brand-mono), monospace; font-size: 9px; opacity: .65; }
+.season-filters button:hover { background: #19346b; color: #eaf4ff; }
+.season-filters button[aria-pressed='true'] { border-color: #bedbff; background: #bedbff; color: #09234b; }
+.season-record-tools { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 20px 0; }
+.season-record-tools p { max-width: 570px; margin: 0; color: #8398bb; font-size: 11px; line-height: 1.7; }
+.season-record-tools label { display: flex; width: 260px; flex-shrink: 0; align-items: center; gap: 9px; border-bottom: 1px solid #708db75c; padding: 10px 0; color: #8aa9d5; }
+.season-record-tools input { min-width: 0; width: 100%; border: 0; background: transparent; color: #d7e9ff; outline: none; font-size: 11px; }
+.season-record-tools input::placeholder { color: #6982a9; }
+.season-result-count { margin: 0 0 17px; color: #b4c7e4; font-family: var(--font-brand-mono), monospace; font-size: 9px; }
+.season-result-count > span { color: #62789e; }
+.season-results { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); align-items: start; gap: 17px; }
+.season-entry { min-width: 0; border: 1px solid #688bd22e; border-radius: 19px; background: linear-gradient(140deg,#132955,#0a1730); animation: season-entry-in 500ms ease-out both; animation-delay: var(--entry-delay); transition: border-color 220ms, background 220ms; }
+.season-entry:hover { border-color: #7199e17a; }
+.season-entry-special { background: linear-gradient(140deg,#292452,#11172f); }
+.season-entry-finalists { background: linear-gradient(140deg,#102f49,#0a1730); }
+.season-entry-participation { background: linear-gradient(140deg,#17243e,#0a1428); }
+.season-entry summary { display: block; padding: 22px; list-style: none; cursor: pointer; }
+.season-entry summary::-webkit-details-marker { display: none; }
+.season-entry-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; color: #8ba6d1; font-family: var(--font-brand-mono), monospace; font-size: 8px; text-transform: uppercase; letter-spacing: .08em; }
+.season-entry-toggle { font-size: 22px; font-weight: 300; transition: transform 250ms; }
+.season-entry[open] .season-entry-toggle { transform: rotate(45deg); }
+.season-entry h3 { min-height: 54px; margin: 16px 0 12px; color: #e6f0ff; font-family: Arial, sans-serif; font-size: clamp(23px,2.1vw,30px); font-weight: 500; line-height: 1.06; letter-spacing: -.04em; overflow-wrap: anywhere; }
+.season-entry-result { display: flex; min-height: 49px; align-items: center; gap: 9px; color: #abd8ff; }
+.season-entry-result > span { color: #a497ff; font-size: 24px; }
+.season-entry-result strong { font-size: 16px; font-weight: 500; line-height: 1.2; letter-spacing: -.03em; }
+.season-entry-team { min-height: 34px; margin: 17px 0 6px; color: #c2d1e9; font-size: 12px; line-height: 1.5; }
+.season-entry-team small { color: #7d96bc; font-size: 10px; }
+.season-entry-college { min-height: 39px; margin: 0; color: #758bad; font-size: 10px; line-height: 1.6; }
+.season-entry-more { display: flex; justify-content: space-between; gap: 10px; margin-top: 20px; padding-top: 13px; border-top: 1px solid #708cb82a; color: #7990b6; font-family: var(--font-brand-mono), monospace; font-size: 8px; }
+.season-entry-more > span { color: #b2cced; }
+.season-entry-details { margin: 0 22px 22px; padding-top: 15px; border-top: 1px solid #718fbc30; animation: season-entry-in 300ms ease-out; }
+.season-entry-details p { margin: 0 0 13px; color: #9dbce8; font-size: 10px; line-height: 1.6; }
+.season-entry-details ul { display: flex; flex-wrap: wrap; gap: 7px; margin: 0; padding: 0; list-style: none; }
+.season-entry-details li { padding: 7px 10px; border: 1px solid #7a9bc038; border-radius: 7px; background: #a1c9ff08; color: #cadbf4; font-size: 10px; }
+.season-no-results { padding: 70px 20px; border: 1px dashed #698ac044; border-radius: 20px; text-align: center; }
+.season-no-results h3 { font-size: 25px; font-weight: 400; }
+.season-no-results p { color: #8499bc; font-size: 12px; }
+.season-no-results button { margin-top: 15px; border: 0; background: transparent; color: #acccff; font-size: 12px; cursor: pointer; }
+.season-endnote { display: flex; align-items: center; gap: 26px; padding: 75px 0; }
+.season-endnote > span { color: #8ea4ff; font-size: 65px; }
+.season-endnote p { margin: 0; font-family: Arial,sans-serif; font-size: clamp(26px,3vw,41px); letter-spacing: -.05em; line-height: 1.12; }
+.season-endnote em { color: #9cb3e1; font-family: Georgia,serif; font-weight: 400; }
+.season-endnote a { margin-left: auto; color: #b4cdf1; font-size: 11px; }
+.season-footer { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 25px 0; border-top: 1px solid #7399d32e; color: #6c85ae; font-family: var(--font-brand-mono),monospace; font-size: 8px; letter-spacing: .04em; }
+.season-footer > span { display: flex; align-items: center; gap: 12px; }
+.season-footer i { width: 3px; height: 3px; border-radius: 50%; background: #8aafff; }
+.season-footer a { white-space: nowrap; color: #a1bbdf; }
+@keyframes season-entry-in { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+@media(max-width:950px) and (min-width:701px) { .season-results { grid-template-columns: repeat(2,minmax(0,1fr)); } }
+@media(max-width:700px) {
+  .season-nav { padding-block: 20px; } .season-nav .verse-club-logo { width: 52px; }
+  .season-heading { padding: 9px 0 20px; gap: 14px; align-items: flex-start; flex-direction: column; } .season-heading h1 { font-size: clamp(27px,7vw,36px); }
+  .season-source { font-size: 8px; margin-top: 10px; } .season-record { padding-top: 55px; }
+  .season-record-heading { align-items: flex-start; flex-direction: column; gap: 14px; } .season-record-heading h2 { font-size: 33px; }
+  .season-filters { margin-top: 22px; gap: 7px; } .season-filters button { padding: 10px 13px; gap: 10px; font-size: 10px; }
+  .season-record-tools { flex-direction: column; align-items: stretch; gap: 15px; } .season-record-tools label { width: 100%; } .season-record-tools p { font-size: 10px; }
+  .season-results { grid-template-columns: 1fr; gap: 13px; } .season-entry h3 { min-height: 0; font-size: 29px; } .season-entry-team { min-height: 0; } .season-entry-college { min-height: 0; }
+  .season-result-count { font-size: 8px; line-height: 1.7; } .season-entry-result { min-height: 40px; }
+  .season-endnote { flex-wrap: wrap; gap: 18px; padding-block: 50px; } .season-endnote > span { font-size: 50px; } .season-endnote a { width: 100%; margin-left: 68px; font-size: 10px; }
+  .season-footer { font-size: 6px; } .season-footer > span { max-width: 180px; flex-wrap: wrap; gap: 7px; line-height: 1.6; }
+}
+@media(prefers-reduced-motion:reduce) { .season-page { scroll-behavior: auto; } .season-page *, .season-page *::after { animation: none !important; transition: none !important; } }
+
+/* A pinned, scroll-scrubbed deck: each front card travels toward the viewer. */
+.season-stack { position: relative; height: calc(100svh + (var(--deck-count) - 1) * 82svh); margin-inline: calc(clamp(22px, 5vw, 76px) * -1); }
+.season-stack-stage { position: sticky; top: 0; height: 100svh; min-height: 500px; overflow: clip; isolation: isolate; background: radial-gradient(ellipse at 50% 46%, #19346b60, transparent 61%), #080f21; border-radius: 30px; }
+.season-stack-stage::after { position: absolute; z-index: 15; inset: auto 0 0; height: 11%; content: ''; background: linear-gradient(transparent, #080f21); pointer-events: none; }
+.season-stack-cards { position: absolute; inset: 0; }
+.season-stack-card { position: absolute; top: 51%; left: 50%; width: min(580px, 72vw, 77svh); height: min(388px, 48.2vw, 51.5svh); min-height: 0; transform-origin: center; will-change: transform; transform: translate(-50%,-50%); }
+.season-stack .season-poster { box-sizing: border-box; width: 100%; height: 100%; min-height: 0; border-radius: 19px; transform: none; animation: none; transition: none; box-shadow: 0 14px 35px #01051045; padding: 24px 28px; }
+.season-stack .season-poster:hover { transform: none; }
+.season-stack .season-card-top { font-size: 8px; }
+.season-stack .season-poster h2 { margin-top: 13px; font-size: clamp(26px,3.2vw,40px); }
+.season-stack .season-big-number { margin-top: auto; padding-top: 0; font-size: clamp(73px,8vw,112px); }
+.season-stack .season-number-label { margin-bottom: 0; font-size: 15px; }
+.season-stack .season-appearances { padding-bottom: 105px; }
+.season-stack .season-card-split { position: absolute; right: 0; bottom: 0; left: 0; margin: 0; }
+.season-stack .season-card-split > div { flex-direction: row; align-items: center; gap: 14px; padding: 15px 25px; }
+.season-stack .season-card-split strong { font-size: 38px; }
+.season-stack .season-card-split span { font-size: 11px; }
+.season-stack .season-orbit { top: 65px; right: -24px; }
+.season-stack .season-orbit b { animation: none; rotate: calc(var(--card-reveal, 0) * 110deg); }
+.season-stack .season-wins .season-big-number { margin-top: auto; }
+.season-stack .season-wins .season-number-label { width: 50%; margin: 6px 0 0; }
+.season-stack .season-bars { position: absolute; right: 25px; bottom: 30px; width: 43%; height: 170px; min-height: 0; margin: 0; }
+.season-stack .season-bars > span { animation: none; transform: scaleY(calc(.3 + var(--card-reveal,0) * .7)); }
+.season-stack .season-bars > i { font-size: 40px; }
+.season-stack .season-moments-copy { margin-top: auto; padding-top: 0; }
+.season-stack .season-moments-copy strong { font-size: 76px; }
+.season-stack .season-moments-copy p { font-size: 24px; }
+.season-stack .season-funnel { top: 46px; left: auto; right: -40px; width: 66%; }
+.season-stack .season-funnel circle { animation: none; translate: 0 calc((1 - var(--card-reveal, 0)) * -18px); }
+.season-stack .season-poster button { margin-top: 17px; padding-top: 12px; font-size: 10px; }
+.season-stack .season-podium { display: flex; flex-direction: column; background: linear-gradient(120deg,#b8deff,#8ca9f4); color: #132c86; }
+.season-stack .season-finalists { display: flex; flex-direction: column; background: linear-gradient(135deg,#073f71,#126688); color: #ccf8ff; }
+.season-stack .season-special { display: flex; flex-direction: column; background: linear-gradient(130deg,#6454dd,#322076); color: #ede6ff; }
+.season-category-copy { position: relative; z-index: 1; display: flex; align-items: flex-end; gap: 15px; margin-top: auto; }
+.season-category-copy > strong { font-family: Arial,sans-serif; font-size: 94px; font-weight: 400; line-height: .85; letter-spacing: -.085em; }
+.season-category-copy p { margin: 0; padding-bottom: 3px; font-size: 20px; line-height: 1.15; letter-spacing: -.04em; }
+.season-category-copy small { display: block; margin-top: 6px; font-size: 9px; letter-spacing: 0; opacity: .7; }
+.season-podium-graphic { position: absolute; right: 30px; bottom: 111px; display: flex; align-items: flex-end; gap: 5px; width: 40%; height: 140px; }
+.season-podium-graphic > span { display: grid; position: relative; width: 33%; height: 56%; place-items: center; border: 1px solid #597ac2; border-radius: 5px 5px 0 0; background: #698df7; color: #183e9f; font-family: Georgia,serif; font-size: 35px; transform-origin: bottom; transform: scaleY(calc(.55 + var(--card-reveal,0) * .45)); }
+.season-podium-graphic > span:nth-child(2) { height: 85%; background: #365ed5; color: #e2f5ff; }
+.season-podium-graphic > span:nth-child(3) { height: 40%; }
+.season-podium-graphic i { position: absolute; top: -46px; font-size: 38px; font-style: normal; color: #254dcb; }
+.season-finalists-graphic { position: absolute; right: 26px; top: 96px; display: grid; grid-template-columns: repeat(2,1fr); gap: 6px; transform: rotate(8deg); }
+.season-finalists-graphic > span { display: grid; width: 45px; height: 32px; place-items: center; border: 1px solid #8bd3e654; border-radius: 5px; color: #80bfd4; font-family: var(--font-brand-mono),monospace; font-size: 11px; }
+.season-finalists-graphic > span:nth-child(5), .season-finalists-graphic > span:nth-child(10) { background: #b3f1ff; color: #064b71; }
+.season-award-graphic { position: absolute; top: 47px; right: 17px; color: #ac9aff; font-size: 235px; line-height: 1; rotate: calc(var(--card-reveal,0) * 65deg); opacity: .55; }
+.season-stack-progress { position: absolute; z-index: 20; right: 35px; bottom: 30px; text-align: right; }
+.season-stack-progress > span { color: #c7ddff; font-family: var(--font-brand-mono),monospace; font-size: 19px; }
+.season-stack-progress i { color: #4f6892; font-size: 11px; font-style: normal; }
+.season-stack-progress > p { margin: 5px 0 12px; color: #8cace0; font-size: 10px; }
+.season-stack-progress > div { display: flex; gap: 7px; }
+.season-stack-progress button { width: 21px; height: 21px; padding: 7px 0; border: 0; background: transparent; cursor: pointer; }
+.season-stack-progress button::after { display: block; height: 3px; border-radius: 5px; background: #354d78; content: ''; }
+.season-stack-progress button[aria-current='step']::after { background: #a0bcff; }
+@media(max-width:700px) {
+  .season-stack-stage { min-height: 460px; border-radius: 22px; }
+  .season-stack-card { width: 84vw; height: 60vw; top: 52%; }
+  .season-stack .season-poster { border-radius: 13px; padding: 16px 18px; }
+  .season-stack .season-card-top { font-size: 5px; }
+  .season-stack .season-card-top > span:last-child { font-size: 15px; }
+  .season-stack .season-poster h2 { margin-top: 8px; font-size: clamp(23px,5.8vw,35px); }
+  .season-stack .season-big-number { font-size: 17vw; }
+  .season-stack .season-number-label { font-size: 9px; }
+  .season-stack .season-appearances { padding-bottom: 67px; }
+  .season-stack .season-card-split > div { gap: 10px; padding: 10px 15px; }
+  .season-stack .season-card-split strong { font-size: 27px; }
+  .season-stack .season-card-split span { font-size: 7px; }
+  .season-stack .season-orbit { width: 210px; height: 210px; top: 20px; right: -20px; }
+  .season-stack .season-orbit i { font-size: 65px; }
+  .season-stack .season-bars { right: 17px; bottom: 20px; height: 110px; gap: 3px; }
+  .season-stack .season-bars > i { font-size: 26px; }
+  .season-stack .season-poster button { margin-top: 10px; padding-top: 7px; font-size: 7px; }
+  .season-stack .season-poster button > span { font-size: 14px; }
+  .season-stack .season-funnel { top: 29px; right: -27px; }
+  .season-stack .season-moments-copy strong { font-size: 13vw; }
+  .season-stack .season-moments-copy p { font-size: 15px; }
+  .season-category-copy { gap: 12px; }
+  .season-category-copy > strong { font-size: 15vw; }
+  .season-category-copy p { font-size: 15px; }
+  .season-category-copy small { margin-top: 3px; font-size: 6px; }
+  .season-podium-graphic { right: 20px; bottom: 79px; height: 85px; width: 35%; }
+  .season-podium-graphic > span { font-size: 23px; }
+  .season-podium-graphic i { top: -28px; font-size: 24px; }
+  .season-finalists-graphic { right: 22px; top: 65px; gap: 4px; }
+  .season-finalists-graphic > span { width: 27px; height: 20px; font-size: 7px; }
+  .season-award-graphic { top: 42px; right: 14px; font-size: 135px; }
+  .season-stack-progress { right: 23px; bottom: 22px; }
+  .season-stack-progress > span { font-size: 16px; }
+  .season-stack-progress > p { font-size: 9px; margin-bottom: 7px; }
+  .season-stack-progress > div { gap: 5px; }
+  .season-stack-progress button { width: 17px; }
+}
+@media(prefers-reduced-motion:reduce) {
+  .season-stack { height: auto; }
+  .season-stack-stage { height: auto; min-height: 0; position: relative; padding: 25px 0; overflow: visible; }
+  .season-stack-stage::after, .season-stack-progress { display: none; }
+  .season-stack-cards { position: relative; display: flex; flex-direction: column; align-items: center; gap: 25px; }
+  .season-stack-card { position: relative; top: auto; left: auto; transform: none !important; opacity: 1 !important; --card-reveal: 1; }
+}
