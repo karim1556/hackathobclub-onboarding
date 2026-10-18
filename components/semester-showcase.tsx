@@ -60,7 +60,7 @@ export function SemesterShowcase() {
 
     <div className="semester-caption" aria-live="polite" aria-atomic="true">
       <div key={selected?.id ?? 'overview'} className="semester-caption-copy"><p className="semester-caption-kicker">{selected ? `${String(active! + 1).padStart(2,'0')} / ${selected.event} · ${selected.location}` : 'THE MOMENTS BEHIND THE MILESTONES'}</p><h2>{selected?.title ?? 'Six moments. One club.'}</h2><p id="semester-selected-description">{selected?.description ?? 'Mindcraft. Technothon. Ideathon. This semester, our builders took their ideas further.'}</p></div>
-      <div className="semester-caption-result">{selected ? <><span>{selected.team}</span><strong style={{ color: selected.accent }}>{selected.result}</strong></> : <><span>THIS SEMESTER</span><strong>Still building. Still going. ↗</strong></>}</div>
+      <div className="semester-caption-result">{selected ? <><span>{selected.team}</span><strong style={{ color: selected.accent }}>{selected.result}</strong></> : <><span>UP NEXT</span><a href="/verse/events">Workshops & events ↗</a></>}</div>
     </div>
   </section>;
 }

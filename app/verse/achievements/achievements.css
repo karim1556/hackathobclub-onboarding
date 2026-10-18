@@ -86,3 +86,6 @@
 }
 @media (max-width: 360px) { .semester-overview > span { display: none; } .semester-photo-nav { gap: 4px; } }
 @media (prefers-reduced-motion: reduce) { .semester-panel,.semester-photo img,.semester-panel-label,.semester-panel-wash { transition: none; } .semester-caption-copy,.semester-expanded-label { animation: none; } }
+.semester-caption-result > a { color: #b8d4f5; font-size: inherit; text-decoration: none; transition: color 180ms; }
+.semester-caption-result > a:hover { color: #e4f1ff; }
+.semester-caption-result > a:focus-visible { outline: 2px solid #a9d7ff; outline-offset: 6px; }

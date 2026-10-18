@@ -52,6 +52,7 @@ export default function VersePage() {
               <a href="/verse/projects" className="verse-back">Projects <span aria-hidden="true">↗</span></a>
               <a href="/verse/achievements" className="verse-back">This semester <span aria-hidden="true">↗</span></a>
               <a href="/verse/events" className="verse-back">Workshops & events <span aria-hidden="true">↗</span></a>
+              <a href="/verse/thank-you" className="verse-back">Thank you <span aria-hidden="true">↗</span></a>
               <a href="/verse/team" className="verse-back">Our team <span aria-hidden="true">↗</span></a>
               <a href="/" className="verse-back">Back to the club <span aria-hidden="true">↗</span></a>
             </div>
