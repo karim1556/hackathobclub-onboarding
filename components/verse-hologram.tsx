@@ -43,7 +43,6 @@ export function VerseHologram() {
       <span className="verse-hologram-aura" aria-hidden="true" />
       <span className="verse-hologram-ring" aria-hidden="true" />
       <span className="verse-hologram-tilt"><span className="verse-hologram-spin"><CrystalMark /></span></span>
-      <span className="verse-hologram-hint" aria-hidden="true">Move to explore <span>·</span> Click to spin</span>
     </button>
   );
 }

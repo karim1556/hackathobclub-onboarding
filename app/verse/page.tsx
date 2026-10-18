@@ -28,7 +28,6 @@ export default function VersePage() {
           <CollegeEmblem />
           <div className="verse-institution">
             <p className="verse-college-name">Vasantdada Patil Pratishthan’s<br />College of Engineering and Visual Arts, Mumbai</p>
-            <p className="verse-accreditation">An Autonomous Institute Affiliated to Mumbai University<br />NAAC ACCREDITED with “A” Grade<br />NBA ACCREDITED (Dated 1/7/2024 to 30/06/2027)</p>
           </div>
           <ClubMark />
         </header>
@@ -41,20 +40,11 @@ export default function VersePage() {
 
         <div className="verse-title-block">
           <p className="verse-eyebrow"><span /> Hackathon Club 2.0 <span /></p>
-          <h1>Enter the Verse<span className="verse-title-period">.</span></h1>
+          <h1>Hackathon Club <span className="verse-title-period">2.0</span></h1>
           <div className="verse-bottom-line">
             <span>Our people. Our projects. Our next chapter.</span>
             <div className="verse-bottom-actions">
-              <a href="/verse/students" className="verse-back">Registered students <span aria-hidden="true">↗</span></a>
-              <a href="/verse/teams" className="verse-back">Teams <span aria-hidden="true">↗</span></a>
-              <a href="/verse/stats" className="verse-back">Season stats <span aria-hidden="true">↗</span></a>
-              <a href="/verse/winners" className="verse-back">Winners <span aria-hidden="true">↗</span></a>
-              <a href="/verse/projects" className="verse-back">Projects <span aria-hidden="true">↗</span></a>
-              <a href="/verse/achievements" className="verse-back">This semester <span aria-hidden="true">↗</span></a>
-              <a href="/verse/events" className="verse-back">Workshops & events <span aria-hidden="true">↗</span></a>
-              <a href="/verse/thank-you" className="verse-back">Thank you <span aria-hidden="true">↗</span></a>
               <a href="/verse/team" className="verse-back">Our team <span aria-hidden="true">↗</span></a>
-              <a href="/" className="verse-back">Back to the club <span aria-hidden="true">↗</span></a>
             </div>
           </div>
         </div>
