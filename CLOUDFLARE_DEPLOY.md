@@ -1,5 +1,11 @@
 # Cloudflare deployment
 
+Page links intentionally use native anchors. The deployed Vinext client router
+was throwing `TypeError: e is not a function` on navigation and failing RSC
+prefetch setup, even though direct route requests worked. Native navigation
+avoids that runtime failure and also works before JavaScript loads. The
+Next.js-only `no-html-link-for-pages` lint rule is disabled for this reason.
+
 This project uses a D1 binding named `DB` for the join form. For a deployment
 outside OpenAI Sites, create a D1 database in your Cloudflare account and set
 these Workers Builds environment variables before deploying:

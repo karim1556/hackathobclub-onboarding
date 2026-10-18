@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useRef, useState, type CSSProperties } from 'react';
-import Link from 'next/link';
 import { SeasonCardStack } from '@/components/season-card-stack';
 import { seasonHighlights, type HighlightCategory } from '@/lib/season-highlights';
 
@@ -76,6 +75,6 @@ export function SeasonStats() {
       <div className="season-results" key={`${category}-${query}`}>{shown.map((item,i) => <details className={`season-entry season-entry-${item.category}`} key={item.id} style={{ '--entry-delay': `${Math.min(i, 8) * 45}ms` } as CSSProperties}><summary><div className="season-entry-top"><span>{String(item.id).padStart(2,'0')} / {categories.find(({ id }) => id === item.category)?.label}</span><span className="season-entry-toggle" aria-hidden="true">+</span></div><h3>{item.event}</h3><div className="season-entry-result"><span aria-hidden="true">{item.category === 'podium' ? '✦' : item.category === 'special' ? '✳' : '↗'}</span><strong>{item.prize ?? item.result}</strong></div><p className="season-entry-team">{item.team ?? item.members.slice(0,2).map((name) => name.split(' · ')[0]).join(' & ')}{!item.team && item.members.length > 2 && <small> +{item.members.length - 2}</small>}</p><p className="season-entry-college">{item.college}</p><span className="season-entry-more">{item.members.length} builders <span>View team ↗</span></span></summary><div className="season-entry-details"><p>{item.result}{item.prize ? ` · ${item.prize}` : ''}</p><ul>{item.members.map((name) => <li key={name}>{name}</li>)}</ul></div></details>)}</div>
       {!shown.length && <div className="season-no-results"><h3>No matching stories yet.</h3><p>Try another name, team or hackathon.</p><button onClick={() => { setQuery(''); setCategory('all'); }}>Show all highlights ↗</button></div>}
     </section>
-    <div className="season-endnote"><span aria-hidden="true">✳</span><p>The next chapter?<br /><em>We’re building it.</em></p><Link href="/verse/teams">Meet this season’s squads ↗</Link></div>
+    <div className="season-endnote"><span aria-hidden="true">✳</span><p>The next chapter?<br /><em>We’re building it.</em></p><a href="/verse/teams">Meet this season’s squads ↗</a></div>
   </>;
 }

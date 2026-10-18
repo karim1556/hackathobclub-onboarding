@@ -1,6 +1,5 @@
 import type { CSSProperties } from 'react';
 import type { Metadata } from 'next';
-import Link from 'next/link';
 import { ClubMark } from '@/components/verse-marks';
 import './team.css';
 
@@ -44,8 +43,8 @@ export default function TeamPage() {
         </svg>
 
         <header className="team-header">
-          <Link href="/verse" className="team-back"><span aria-hidden="true">↖</span> Back to the Verse</Link>
-          <Link href="/verse" className="team-brand" aria-label="Hackathon Club 2.0 — The Verse"><ClubMark /></Link>
+          <a href="/verse" className="team-back"><span aria-hidden="true">↖</span> Back to the Verse</a>
+          <a href="/verse" className="team-brand" aria-label="Hackathon Club 2.0 — The Verse"><ClubMark /></a>
         </header>
 
         <svg className="team-bulb" viewBox="0 0 240 230" aria-hidden="true">
@@ -82,7 +81,7 @@ export default function TeamPage() {
           <span className="team-title-doodle" aria-hidden="true">✳</span>
         </div>
 
-        <footer className="team-footer"><span>HACKATHON CLUB 2.0</span><Link className="team-next" href="/verse/students">Registered students <span aria-hidden="true">↗</span></Link></footer>
+        <footer className="team-footer"><span>HACKATHON CLUB 2.0</span><a className="team-next" href="/verse/students">Registered students <span aria-hidden="true">↗</span></a></footer>
       </section>
     </main>
   );

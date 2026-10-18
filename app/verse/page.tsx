@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
 import { CollegeEmblem, ClubMark } from '@/components/verse-marks';
 import { VerseHologram } from '@/components/verse-hologram';
 import './verse.css';
@@ -46,14 +45,14 @@ export default function VersePage() {
           <div className="verse-bottom-line">
             <span>Our people. Our projects. Our next chapter.</span>
             <div className="verse-bottom-actions">
-              <Link href="/verse/students" className="verse-back">Registered students <span aria-hidden="true">↗</span></Link>
-              <Link href="/verse/teams" className="verse-back">Teams <span aria-hidden="true">↗</span></Link>
-              <Link href="/verse/stats" className="verse-back">Season stats <span aria-hidden="true">↗</span></Link>
-              <Link href="/verse/winners" className="verse-back">Winners <span aria-hidden="true">↗</span></Link>
-              <Link href="/verse/projects" className="verse-back">Projects <span aria-hidden="true">↗</span></Link>
-              <Link href="/verse/achievements" className="verse-back">This semester <span aria-hidden="true">↗</span></Link>
-              <Link href="/verse/team" className="verse-back">Our team <span aria-hidden="true">↗</span></Link>
-              <Link href="/" className="verse-back">Back to the club <span aria-hidden="true">↗</span></Link>
+              <a href="/verse/students" className="verse-back">Registered students <span aria-hidden="true">↗</span></a>
+              <a href="/verse/teams" className="verse-back">Teams <span aria-hidden="true">↗</span></a>
+              <a href="/verse/stats" className="verse-back">Season stats <span aria-hidden="true">↗</span></a>
+              <a href="/verse/winners" className="verse-back">Winners <span aria-hidden="true">↗</span></a>
+              <a href="/verse/projects" className="verse-back">Projects <span aria-hidden="true">↗</span></a>
+              <a href="/verse/achievements" className="verse-back">This semester <span aria-hidden="true">↗</span></a>
+              <a href="/verse/team" className="verse-back">Our team <span aria-hidden="true">↗</span></a>
+              <a href="/" className="verse-back">Back to the club <span aria-hidden="true">↗</span></a>
             </div>
           </div>
         </div>
